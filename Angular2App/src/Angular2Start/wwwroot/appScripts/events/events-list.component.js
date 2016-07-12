@@ -35,4 +35,3 @@ var EventsListComponet = (function () {
     return EventsListComponet;
 }());
 exports.EventsListComponet = EventsListComponet;
-//# sourceMappingURL=events-list.component.js.map

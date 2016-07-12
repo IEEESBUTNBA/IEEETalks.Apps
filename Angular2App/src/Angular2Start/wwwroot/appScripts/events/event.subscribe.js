@@ -23,4 +23,3 @@ var EventSubscribe = (function () {
     return EventSubscribe;
 }());
 exports.EventSubscribe = EventSubscribe;
-//# sourceMappingURL=event.subscribe.js.map

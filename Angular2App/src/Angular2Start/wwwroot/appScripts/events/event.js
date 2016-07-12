@@ -15,4 +15,3 @@ var Event = (function () {
     return Event;
 }());
 exports.Event = Event;
-//# sourceMappingURL=event.js.map

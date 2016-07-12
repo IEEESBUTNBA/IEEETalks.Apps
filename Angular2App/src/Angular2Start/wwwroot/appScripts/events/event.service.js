@@ -43,4 +43,3 @@ var EventService = (function () {
     return EventService;
 }());
 exports.EventService = EventService;
-//# sourceMappingURL=event.service.js.map
