@@ -1,28 +1,23 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import { ROUTER_DIRECTIVES } from "@angular/router-deprecated";
+import { ActivatedRoute, ROUTER_DIRECTIVES, Router} from "@angular/router";
 
 import {IEvent} from "./event";
 import {EventService} from "./event.service";
 
 @Component({  
     templateUrl: "templates/event/events-list.component.html",
-    directives:[ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES]    
 })
 
 export class EventsListComponet implements OnInit {
 
     pageTitle: string = "Events List";
     eventList: IEvent[];
-    errorMessage: string;    
-    constructor(private _eventService: EventService) {
+    errorMessage: string;
+    constructor(private _eventService: EventService, private route: ActivatedRoute, private _router: Router) {
         
     }
-
-    //test only
-    detail(): void {
-        window.alert("Detail");
-    }
-
+       
     ngOnInit(): void {
 
         this._eventService.getEvents()
@@ -30,6 +25,11 @@ export class EventsListComponet implements OnInit {
             error => this.errorMessage = <any>error);          
     }
 
+    onSelect(event: IEvent): void {
+        this._router.navigate(['/event', event.id]);
+        
+    }
+        
 }
 
 

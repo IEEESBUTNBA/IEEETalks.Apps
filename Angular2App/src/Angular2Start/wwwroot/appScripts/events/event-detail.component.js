@@ -9,36 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_deprecated_1 = require('@angular/router-deprecated');
+var router_1 = require('@angular/router');
 var event_service_1 = require("./event.service");
 var event_subscribe_1 = require("./event.subscribe");
 var EventDetailComponent = (function () {
-    function EventDetailComponent(_routeParams, _eventService, _router) {
-        this._routeParams = _routeParams;
+    function EventDetailComponent(_route, _eventService, _router) {
+        this._route = _route;
         this._eventService = _eventService;
         this._router = _router;
     }
     EventDetailComponent.prototype.ngOnInit = function () {
-        var id = this._routeParams.get('id');
-        this.getEvent(id);
+        var _this = this;
+        this._sub = this._route
+            .params
+            .subscribe(function (params) {
+            _this.id = params['id'];
+        });
+        this.getEvent(this.id);
     };
     EventDetailComponent.prototype.getEvent = function (id) {
         var _this = this;
-        this._eventService.getEvent(id)
+        this._eventService.getEvent(this.id)
             .subscribe(function (event) { return _this.event = event; }, function (error) { return _this.errorMessage = error; });
     };
     EventDetailComponent.prototype.getEventPromise = function (id) {
         this._eventService.getEvent(id);
     };
     EventDetailComponent.prototype.onBack = function () {
-        this._router.navigate(['Events']);
+        this._router.navigate(['/events']);
     };
     EventDetailComponent = __decorate([
         core_1.Component({
             templateUrl: "templates/event/event-detail.component.html",
             directives: [event_subscribe_1.EventSubscribe]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.RouteParams, event_service_1.EventService, router_deprecated_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router])
     ], EventDetailComponent);
     return EventDetailComponent;
 }());

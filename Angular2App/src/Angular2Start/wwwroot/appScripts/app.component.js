@@ -9,13 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_deprecated_1 = require("@angular/router-deprecated");
+var router_1 = require("@angular/router");
 require("rxjs/add/operator/map");
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/do');
 require('rxjs/add/observable/throw');
-var events_list_component_1 = require("./events/events-list.component");
-var event_detail_component_1 = require("./events/event-detail.component");
 var event_service_1 = require("./events/event.service");
 var AppComponent = (function () {
     function AppComponent() {
@@ -25,13 +23,9 @@ var AppComponent = (function () {
         core_1.Component({
             selector: "app",
             templateUrl: "templates/shared/app.component.html",
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES],
             providers: [event_service_1.EventService]
-        }),
-        router_deprecated_1.RouteConfig([
-            { path: '/events', name: 'Events', component: events_list_component_1.EventsListComponet, useAsDefault: true },
-            { path: '/event/:id', name: 'EventDetail', component: event_detail_component_1.EventDetailComponent }
-        ]), 
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

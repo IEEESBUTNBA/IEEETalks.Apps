@@ -9,28 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_deprecated_1 = require("@angular/router-deprecated");
+var router_1 = require("@angular/router");
 var event_service_1 = require("./event.service");
 var EventsListComponet = (function () {
-    function EventsListComponet(_eventService) {
+    function EventsListComponet(_eventService, route, _router) {
         this._eventService = _eventService;
+        this.route = route;
+        this._router = _router;
         this.pageTitle = "Events List";
     }
-    //test only
-    EventsListComponet.prototype.detail = function () {
-        window.alert("Detail");
-    };
     EventsListComponet.prototype.ngOnInit = function () {
         var _this = this;
         this._eventService.getEvents()
             .subscribe(function (events) { return _this.eventList = events; }, function (error) { return _this.errorMessage = error; });
     };
+    EventsListComponet.prototype.onSelect = function (event) {
+        this._router.navigate(['/event', event.id]);
+    };
     EventsListComponet = __decorate([
         core_1.Component({
             templateUrl: "templates/event/events-list.component.html",
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES]
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService])
+        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute, router_1.Router])
     ], EventsListComponet);
     return EventsListComponet;
 }());

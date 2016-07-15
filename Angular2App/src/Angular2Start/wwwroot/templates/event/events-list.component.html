@@ -1,6 +1,6 @@
 ﻿<div class="row">
-    <h2 class="col-sm-12 col-md-12">{{pageTitle}}</h2>
-    <div class="row">
+    <h2 class="col-sm-12 col-md-12">{{pageTitle}}</h2>    
+    <div class="row">         
         <div class="col-sm-6 col-md-4" *ngFor="let events of eventList">
             <div class="app-margin app-border app-padding thumbnailBG">
                 <div class="row">
@@ -12,7 +12,7 @@
                         <p>{{events.description.substring(0, 100)}}...</p>
                         <h4>Price:  {{events.price | currency: 'USD':true:'1.2-2'}}</h4>
                         <h4>Location: {{events.location}}</h4>
-                        <button class="btn btn-primary" [routerLink]="['EventDetail',{id:events.id}]">Detail</button>
+                        <button class="btn btn-primary" (click)="onSelect(events)">Detail</button>                        
                     </div>
                 </div>
             </div>
