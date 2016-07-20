@@ -6,7 +6,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-offset-2 col-md-8 col-sm-12 " *ngIf='event'>        
+    <div class="col-md-offset-2 col-md-8 col-sm-12 " *ngIf='event'>
         <div class="row">
             <div class="col-md-12">
                 <h1>{{event.name}}</h1>
@@ -18,24 +18,24 @@
                 <h4>{{event.description}}</h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row detailBox">
             <div class="col-md-10">
                 <h4>Price:  {{event.price | currency: 'USD':true:'1.2-2'}}</h4>
                 <h4>Location: {{event.location}}</h4>
             </div>
             <div class="col-md-10">
-                <h2>{{event.eventDate}}</h2>
+                <h4>Event Date:</h4>
+                <h2> {{event.eventDate| date:'fullDate' }}</h2>
             </div>
 
         </div>
         <div class="row">
-            <div class="pull-right">              
-                <a class="btn btn-success" data-toggle="modal" data-target="#subscribeModal">
+            <div class="pull-right">
+                <a class="btn btn-success" data-toggle="modal" data-target="#subscribeModal" >
                     <i class="glyphicon glyphicon-pencil"></i> Subscribe
                 </a>
             </div>
         </div>
-        </div>
-    </div>
-<app-eventsub></app-eventsub>
-
+        <app-eventsub [eventId]='event.id'></app-eventsub>
+    </div>    
+</div>

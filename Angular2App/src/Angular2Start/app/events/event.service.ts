@@ -1,15 +1,20 @@
 ﻿import { Injectable } from "@angular/core";
-import { IEvent } from "./event";
-import { Http, Response} from "@angular/http";
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+
+import { IEvent } from "./event";
+import {IinscriptionIntended} from "../shared/inscriptionIntended";
+import {url} from "../shared/urlConstant";
+
 
 
 @Injectable()
 export class EventService {
 
-    private _eventUrl = 'http://localhost:49458/api/Events';
+    private _eventUrl = url + 'api/Events';
+    private _inscriptionUrl = url + 'api/InscriptionIntended';
 
-    constructor(private _http: Http ) { }
+    constructor(private _http: Http) { }
 
     getEvents(): Observable<IEvent[]> {
         return this._http.get(this._eventUrl)
@@ -25,13 +30,27 @@ export class EventService {
             .catch(this.handleError);
     }
 
+    inscriptionToEvent(user: IinscriptionIntended): Observable<IinscriptionIntended> {
+        let body = JSON.stringify(user);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        console.log(body);
+
+        return this._http.post(this._inscriptionUrl, body, options)
+            .map(user => user.status)
+            .catch(this.handleError);
+
+    }
+
     private extractData(res: Response) {
-        let body = res.json();       
+        let body = res.json();
         return body.items || {};
     }
 
     private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || "server error");
+        //console.error(error);
+        return Observable.throw(error || "server error");
     }
+
 }

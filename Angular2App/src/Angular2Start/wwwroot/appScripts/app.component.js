@@ -14,6 +14,7 @@ require("rxjs/add/operator/map");
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/do');
 require('rxjs/add/observable/throw');
+require('rxjs/add/operator/toPromise');
 var event_service_1 = require("./events/event.service");
 var AppComponent = (function () {
     function AppComponent() {

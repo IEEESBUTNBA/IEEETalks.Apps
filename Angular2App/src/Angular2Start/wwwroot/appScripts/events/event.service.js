@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
+var urlConstant_1 = require("../shared/urlConstant");
 var EventService = (function () {
     function EventService(_http) {
         this._http = _http;
-        this._eventUrl = 'http://localhost:49458/api/Events';
+        this._eventUrl = urlConstant_1.url + 'api/Events';
+        this._inscriptionUrl = urlConstant_1.url + 'api/InscriptionIntended';
     }
     EventService.prototype.getEvents = function () {
         return this._http.get(this._eventUrl)
@@ -28,13 +30,22 @@ var EventService = (function () {
             .do(function (data) { return console.log("Event" + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    EventService.prototype.inscriptionToEvent = function (user) {
+        var body = JSON.stringify(user);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        console.log(body);
+        return this._http.post(this._inscriptionUrl, body, options)
+            .map(function (user) { return user.status; })
+            .catch(this.handleError);
+    };
     EventService.prototype.extractData = function (res) {
         var body = res.json();
         return body.items || {};
     };
     EventService.prototype.handleError = function (error) {
-        console.error(error);
-        return Observable_1.Observable.throw(error.json().error || "server error");
+        //console.error(error);
+        return Observable_1.Observable.throw(error || "server error");
     };
     EventService = __decorate([
         core_1.Injectable(), 
