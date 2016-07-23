@@ -100,3 +100,4 @@ var EventSubscribeComponent = (function () {
     return EventSubscribeComponent;
 }());
 exports.EventSubscribeComponent = EventSubscribeComponent;
+//# sourceMappingURL=event.subscribe.component.js.map

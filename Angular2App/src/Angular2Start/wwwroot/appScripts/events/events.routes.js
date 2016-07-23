@@ -6,3 +6,4 @@ exports.eventsRoutes = [
     { path: 'events', component: events_list_component_1.EventsListComponet },
     { path: 'event/:id', component: event_detail_component_1.EventDetailComponent }
 ];
+//# sourceMappingURL=events.routes.js.map

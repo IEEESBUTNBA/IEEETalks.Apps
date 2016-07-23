@@ -48,3 +48,4 @@ var EventDetailComponent = (function () {
     return EventDetailComponent;
 }());
 exports.EventDetailComponent = EventDetailComponent;
+//# sourceMappingURL=event-detail.component.js.map
