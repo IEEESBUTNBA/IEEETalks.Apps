@@ -3,11 +3,11 @@ import {ActivatedRoute, Router  } from '@angular/router';
 
 import {EventService} from "./event.service";
 import {IEvent} from "./event";
-import { EventSubscribe} from "./event.subscribe"
+import { EventSubscribeComponent} from "./event.subscribe.component"
 
 @Component({
     templateUrl: "templates/event/event-detail.component.html",
-    directives: [EventSubscribe]  
+    directives: [EventSubscribeComponent]  
 
 })
 
@@ -33,7 +33,7 @@ export class EventDetailComponent implements OnInit {
             .subscribe(params => {
                 this.id = params['id'];              
             });
-        this.getEvent(this.id);    
+        this.getEvent(this.id);         
     }
 
     getEvent(id: string) {

@@ -8,60 +8,39 @@
                 <div class="text-center">
                     <h2>Subscribe</h2>
                 </div>
-                <form class="form-horizontal" role="form" *ngIf="active" #subcriptionForm="ngForm">
-                    <div class="form-group">
-                        <div class="alert alert-danger" *ngIf='errorMessage'>
-                            {{errorMessage}}
-                        </div>
-                        <div class="alert alert-success" *ngIf='succesMessage'>
-                            {{succesMessage}}
-                        </div>
+                <form class="form-horizontal" role="form" *ngIf="active" [formGroup]="subcriptionForm">
+                    <div class="form-group">                        
                         <div class="form-group">
                             <div class="col-md-3 text-right">
-                                <label  for="InputEmail">Email address</label>
+                                <label for="email">Email address</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ngControl="email" #email="ngForm">
-                                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                                    <div *ngIf="email.errors && email.errors.required">
-                                        Email is required
-                                    </div>
-                                    <div *ngIf="email.errors && email.errors.pattern">
-                                        Email is invalid
-                                    </div>
-                                </div>
+                                <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="inscriptionIntended.email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="email" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-3 text-right">
-                                <label for="Name">Name</label>
-                            </div>
+                                <label for="name">Name</label>
+                            </div>                            
                             <div class="col-md-9">
-                                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="user.firstName" ngControl="name" required #name="ngForm">
-                                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-                                    Name is required
-                                </div>
+                                <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="inscriptionIntended.firstName" [formControl]="name" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-3 text-right">
-                                <label for="LastName">Last Name</label>
+                                <label for="lastName">Last Name</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]="user.lastName" required ngControl="lastName" #lastName="ngForm">
-                                <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
-                                    Last Name is required
-                                </div>
+                                <input type="text" class="form-control" placeholder="Last Name" name="lastName" [(ngModel)]="inscriptionIntended.lastName"  [formControl]="lastName" required>
                             </div>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-6">
-                            <button class="btn btn-primary" (click)="onSubscribe()" [disabled]="!subcriptionForm.form.valid">
+                            <button class="btn btn-primary" (click)="onSubscribe()"  [attr.data-dismiss]="modal">
                                 Sign up
                             </button>
-                            <button class="btn btn-primary" (click)="onCleanMessage()" data-dismiss="modal" data-target="#subscribeModal">
+                            <button class="btn btn-primary" data-dismiss="modal" data-target="#subscribeModal">
                                 Close
                             </button>
                         </div>

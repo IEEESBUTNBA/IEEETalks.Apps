@@ -28,6 +28,7 @@ gulp.task("scriptsNStyles", () => {
             '@angular/**',
             'jquery/dist/jquery.*js',
             'bootstrap/dist/js/bootstrap.*js',
+            'toastr/toastr.js'
     ], {
         cwd: "node_modules/**"
     })
@@ -35,7 +36,8 @@ gulp.task("scriptsNStyles", () => {
 
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.css',
-        'node_modules/bootstrap/dist/css/bootstrap.css.map'
+        'node_modules/bootstrap/dist/css/bootstrap.css.map',
+        'node_modules/toastr/build/toastr.min.css'
     ]).pipe(gulp.dest('./wwwroot/libs/css'));
 
     gulp.src([

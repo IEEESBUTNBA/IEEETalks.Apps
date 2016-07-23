@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require('@angular/router');
 var event_service_1 = require("./event.service");
-var event_subscribe_1 = require("./event.subscribe");
+var event_subscribe_component_1 = require("./event.subscribe.component");
 var EventDetailComponent = (function () {
     function EventDetailComponent(_route, _eventService, _router) {
         this._route = _route;
@@ -41,7 +41,7 @@ var EventDetailComponent = (function () {
     EventDetailComponent = __decorate([
         core_1.Component({
             templateUrl: "templates/event/event-detail.component.html",
-            directives: [event_subscribe_1.EventSubscribe]
+            directives: [event_subscribe_component_1.EventSubscribeComponent]
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router])
     ], EventDetailComponent);
