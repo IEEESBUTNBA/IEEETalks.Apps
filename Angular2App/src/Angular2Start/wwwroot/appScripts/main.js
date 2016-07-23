@@ -1,5 +1,6 @@
+/// <reference path="../typings/main.d.ts" />
+/// <reference path="../typings/typings/tsd.d.ts" />
 "use strict";
-///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");

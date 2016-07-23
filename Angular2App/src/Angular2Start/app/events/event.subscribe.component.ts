@@ -1,6 +1,4 @@
-﻿/// <reference path="../../typings/toastr/toastr.d.ts" />
-
-import { Component, Input} from "@angular/core";
+﻿import { Component, Input} from "@angular/core";
 import {FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
 
 import {IinscriptionIntended, InscriptionIntended} from "../shared/inscriptionIntended";
