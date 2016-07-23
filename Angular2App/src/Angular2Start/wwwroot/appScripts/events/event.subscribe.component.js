@@ -18,9 +18,9 @@ var EventSubscribeComponent = (function () {
         this.builder = builder;
         this.inscriptionIntended = new inscriptionIntended_1.InscriptionIntended("", "", "", "");
         this.active = true;
-        this.name = new forms_1.FormControl("", [forms_1.Validators.required], []);
-        this.email = new forms_1.FormControl('', [forms_1.Validators.required], []);
-        this.lastName = new forms_1.FormControl('', [forms_1.Validators.required], []);
+        this.name = new forms_1.FormControl("", [forms_1.Validators.required]);
+        this.email = new forms_1.FormControl('', [forms_1.Validators.required]);
+        this.lastName = new forms_1.FormControl('', [forms_1.Validators.required]);
         this.subcriptionForm = builder.group({
             name: this.name,
             lastName: this.lastName,
@@ -33,7 +33,7 @@ var EventSubscribeComponent = (function () {
             this.inscriptionIntended.eventId = this.eventId;
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
                 .subscribe(function (status) { return _this.getSuccesrMsg(status); }, function (error) { return _this.getErrorMsg(error); });
-            this.modal = "modal"; //close modal        
+            this.modal = "modal"; //<------------------close modal        
         }
         else {
             this.modal = "";

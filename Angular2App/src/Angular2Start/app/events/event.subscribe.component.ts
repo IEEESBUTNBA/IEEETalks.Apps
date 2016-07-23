@@ -29,9 +29,9 @@ export class EventSubscribeComponent  {
 
     constructor(private _eventService: EventService, public builder: FormBuilder) {
 
-        this.name = new FormControl("", [Validators.required], []);
-        this.email = new FormControl('', [Validators.required], []);
-        this.lastName = new FormControl('', [Validators.required], []);
+        this.name = new FormControl("", [Validators.required]);
+        this.email = new FormControl('', [Validators.required]);
+        this.lastName = new FormControl('', [Validators.required]);
 
         this.subcriptionForm = builder.group({
             name: this.name,
@@ -46,7 +46,7 @@ export class EventSubscribeComponent  {
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
                 .subscribe(status => this.getSuccesrMsg(status),
                 error => this.getErrorMsg(error));
-            this.modal = "modal"; //close modal        
+            this.modal = "modal";     //<------------------close modal        
         } else {
             this.modal = "";
             this.getFormError();
