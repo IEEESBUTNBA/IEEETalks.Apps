@@ -12,43 +12,49 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 var urlConstant_1 = require("../shared/urlConstant");
+var errorMsgHandle_service_1 = require("../shared/errorMsgHandle.service");
 var EventService = (function () {
-    function EventService(_http) {
+    function EventService(_http, _errorMsgHandle) {
         this._http = _http;
+        this._errorMsgHandle = _errorMsgHandle;
         this._eventUrl = urlConstant_1.url + 'api/Events';
         this._inscriptionUrl = urlConstant_1.url + 'api/InscriptionIntended';
     }
     EventService.prototype.getEvents = function () {
+        var _this = this;
         return this._http.get(this._eventUrl)
             .map(this.extractData)
             .do(function (data) { return console.log("ALL" + JSON.stringify(data)); })
-            .catch(this.handleError);
+            .catch(function (error) { return _this.handleError(error); });
     };
     EventService.prototype.getEvent = function (id) {
+        var _this = this;
         return this._http.get(this._eventUrl + "/" + id)
             .map(function (data) { return data.json(); })
             .do(function (data) { return console.log("Event" + JSON.stringify(data)); })
-            .catch(this.handleError);
+            .catch(function (error) { return _this.handleError(error); });
     };
     EventService.prototype.inscriptionToEvent = function (user) {
+        var _this = this;
         var body = JSON.stringify(user);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         console.log(body);
         return this._http.post(this._inscriptionUrl, body, options)
             .map(function (user) { return user.status; })
-            .catch(this.handleError);
+            .catch(function (error) { return _this.handleError(error); });
     };
     EventService.prototype.extractData = function (res) {
         var body = res.json();
         return body.items || {};
     };
     EventService.prototype.handleError = function (error) {
+        this._errorMsgHandle.getErrorMsg(error);
         return Observable_1.Observable.throw(error || "server error");
     };
     EventService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, errorMsgHandle_service_1.ErrorMsgHandleService])
     ], EventService);
     return EventService;
 }());

@@ -4,7 +4,6 @@ import {ActivatedRoute, Router  } from '@angular/router';
 import {EventService} from "./event.service";
 import {IEvent} from "./event";
 import { EventSubscribeComponent} from "./event.subscribe.component";
-import {ErrorMsgHandle} from "../shared/errorMsgHandle";
 
 
 @Component({
@@ -24,9 +23,7 @@ export class EventDetailComponent implements OnInit {
 
     constructor(private _route: ActivatedRoute,
         private _eventService: EventService,
-        private _router: Router,
-        private _errorMsgHandle: ErrorMsgHandle
-    ) {
+        private _router: Router) {
 
     }
 
@@ -42,7 +39,7 @@ export class EventDetailComponent implements OnInit {
     getEvent(id: string) {
         this._eventService.getEvent(id)
             .subscribe(event => this.event = event,
-            error => this._errorMsgHandle.getErrorMsg(error));
+            error => error);
     }
 
     onBack(): void {       

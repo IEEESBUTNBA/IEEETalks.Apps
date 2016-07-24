@@ -16,7 +16,7 @@ require('rxjs/add/operator/do');
 require('rxjs/add/observable/throw');
 require('rxjs/add/operator/toPromise');
 var event_service_1 = require("./events/event.service");
-var errorMsgHandle_1 = require("./shared/errorMsgHandle");
+var errorMsgHandle_service_1 = require("./shared/errorMsgHandle.service");
 var AppComponent = (function () {
     function AppComponent() {
         this.pageTitle = "IEEE";
@@ -26,7 +26,7 @@ var AppComponent = (function () {
             selector: "app",
             templateUrl: "templates/shared/app.component.html",
             directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [event_service_1.EventService, errorMsgHandle_1.ErrorMsgHandle]
+            providers: [event_service_1.EventService, errorMsgHandle_service_1.ErrorMsgHandleService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

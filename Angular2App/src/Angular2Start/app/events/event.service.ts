@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { IEvent } from "./event";
 import {IinscriptionIntended} from "../shared/inscriptionIntended";
 import {url} from "../shared/urlConstant";
+import {ErrorMsgHandleService} from "../shared/errorMsgHandle.service";
 
 
 
@@ -14,20 +15,20 @@ export class EventService {
     private _eventUrl = url + 'api/Events';
     private _inscriptionUrl = url + 'api/InscriptionIntended';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: Http, private _errorMsgHandle: ErrorMsgHandleService) { }
 
     getEvents(): Observable<IEvent[]> {
         return this._http.get(this._eventUrl)
             .map(this.extractData)
             .do(data => console.log("ALL" + JSON.stringify(data)))
-            .catch(this.handleError);
+            .catch(error => this.handleError(error));
     }
 
     getEvent(id): Observable<IEvent> {
         return this._http.get(this._eventUrl + "/" + id)
             .map(data => data.json())
             .do(data => console.log("Event" + JSON.stringify(data)))
-            .catch(this.handleError);
+            .catch(error => this.handleError(error));
     }
 
     inscriptionToEvent(user: IinscriptionIntended): Observable<IinscriptionIntended> {
@@ -39,7 +40,7 @@ export class EventService {
 
         return this._http.post(this._inscriptionUrl, body, options)
             .map(user => user.status)
-            .catch(this.handleError);
+            .catch(error => this.handleError(error));
 
     }
 
@@ -48,8 +49,10 @@ export class EventService {
         return body.items || {};
     }
 
-    private handleError(error: Response) {        
+    private handleError(error: Response) {
+        this._errorMsgHandle.getErrorMsg(error);                   
         return Observable.throw(error || "server error");
+            
     }
 
 }

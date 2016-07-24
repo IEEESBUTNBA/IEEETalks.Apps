@@ -12,12 +12,10 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var inscriptionIntended_1 = require("../shared/inscriptionIntended");
 var event_service_1 = require("./event.service");
-var errorMsgHandle_1 = require("../shared/errorMsgHandle");
 var EventSubscribeComponent = (function () {
-    function EventSubscribeComponent(_eventService, builder, _errorMsgHandle) {
+    function EventSubscribeComponent(_eventService, builder) {
         this._eventService = _eventService;
         this.builder = builder;
-        this._errorMsgHandle = _errorMsgHandle;
         this.inscriptionIntended = new inscriptionIntended_1.InscriptionIntended("", "", "", "");
         this.active = true;
         this.name = new forms_1.FormControl("", [forms_1.Validators.required]);
@@ -34,7 +32,7 @@ var EventSubscribeComponent = (function () {
         if (this.subcriptionForm.status == "VALID") {
             this.inscriptionIntended.eventId = this.eventId;
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
-                .subscribe(function (status) { return _this.getSuccesrMsg(status); }, function (error) { return _this._errorMsgHandle.getErrorMsg(error); });
+                .subscribe(function (status) { return _this.getSuccesrMsg(status); }, function (error) { return error; });
             this.modal = "modal"; //<------------------close modal        
         }
         else {
@@ -57,6 +55,12 @@ var EventSubscribeComponent = (function () {
             toastr.warning("Email is not valid");
         }
     };
+    EventSubscribeComponent.prototype.getSuccesrMsg = function (status) {
+        if (status == 200) {
+            toastr.success("You've signed up for the event");
+            this.resetForm();
+        }
+    };
     EventSubscribeComponent.prototype.resetForm = function () {
         var _this = this;
         this.inscriptionIntended.firstName = "";
@@ -64,12 +68,6 @@ var EventSubscribeComponent = (function () {
         this.inscriptionIntended.lastName = "";
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
-    };
-    EventSubscribeComponent.prototype.getSuccesrMsg = function (status) {
-        if (status == 200) {
-            toastr.success("You've signed up for the event");
-            this.resetForm();
-        }
     };
     __decorate([
         core_1.Input(), 
@@ -82,7 +80,7 @@ var EventSubscribeComponent = (function () {
             providers: [],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, forms_1.FormBuilder, errorMsgHandle_1.ErrorMsgHandle])
+        __metadata('design:paramtypes', [event_service_1.EventService, forms_1.FormBuilder])
     ], EventSubscribeComponent);
     return EventSubscribeComponent;
 }());

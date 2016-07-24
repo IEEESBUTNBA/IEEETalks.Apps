@@ -3,7 +3,7 @@ import { ActivatedRoute, ROUTER_DIRECTIVES, Router} from "@angular/router";
 
 import {IEvent} from "./event";
 import {EventService} from "./event.service";
-import {ErrorMsgHandle} from "../shared/errorMsgHandle";
+
 
 @Component({  
     templateUrl: "templates/event/events-list.component.html",
@@ -15,7 +15,7 @@ export class EventsListComponet implements OnInit {
     pageTitle: string = "Events List";
     eventList: IEvent[];
     errorMessage: string;
-    constructor(private _eventService: EventService, private route: ActivatedRoute, private _router: Router, private _errorMsgHandle: ErrorMsgHandle) {
+    constructor(private _eventService: EventService, private route: ActivatedRoute, private _router: Router) {
         
     }
        
@@ -23,7 +23,7 @@ export class EventsListComponet implements OnInit {
 
         this._eventService.getEvents()
             .subscribe(events => this.eventList = events,
-            error => this._errorMsgHandle.getErrorMsg(error));          
+            error => error);          
     }
 
     onSelect(event: IEvent): void {

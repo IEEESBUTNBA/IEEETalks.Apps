@@ -1,10 +1,12 @@
-﻿
-export class ErrorMsgHandle {
+﻿import { Injectable } from "@angular/core";
+
+@Injectable()
+export class ErrorMsgHandleService {
 
     constructor() {       
     }
 
-    getErrorMsg(error) {
+    getErrorMsg(error) {        
         console.log(error); //to see all the errors just for dev
 
         if (error.status == 409) {

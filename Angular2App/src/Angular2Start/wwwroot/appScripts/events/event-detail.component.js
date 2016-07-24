@@ -12,13 +12,11 @@ var core_1 = require("@angular/core");
 var router_1 = require('@angular/router');
 var event_service_1 = require("./event.service");
 var event_subscribe_component_1 = require("./event.subscribe.component");
-var errorMsgHandle_1 = require("../shared/errorMsgHandle");
 var EventDetailComponent = (function () {
-    function EventDetailComponent(_route, _eventService, _router, _errorMsgHandle) {
+    function EventDetailComponent(_route, _eventService, _router) {
         this._route = _route;
         this._eventService = _eventService;
         this._router = _router;
-        this._errorMsgHandle = _errorMsgHandle;
     }
     EventDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -32,7 +30,7 @@ var EventDetailComponent = (function () {
     EventDetailComponent.prototype.getEvent = function (id) {
         var _this = this;
         this._eventService.getEvent(id)
-            .subscribe(function (event) { return _this.event = event; }, function (error) { return _this._errorMsgHandle.getErrorMsg(error); });
+            .subscribe(function (event) { return _this.event = event; }, function (error) { return error; });
     };
     EventDetailComponent.prototype.onBack = function () {
         this._router.navigate(['/events']);
@@ -42,7 +40,7 @@ var EventDetailComponent = (function () {
             templateUrl: "templates/event/event-detail.component.html",
             directives: [event_subscribe_component_1.EventSubscribeComponent]
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router, errorMsgHandle_1.ErrorMsgHandle])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router])
     ], EventDetailComponent);
     return EventDetailComponent;
 }());

@@ -3,7 +3,7 @@ import {FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVE
 
 import {IinscriptionIntended, InscriptionIntended} from "../shared/inscriptionIntended";
 import {EventService} from "./event.service";
-import {ErrorMsgHandle} from "../shared/errorMsgHandle";
+
 
 
 @Component({
@@ -29,7 +29,7 @@ export class EventSubscribeComponent  {
     subcriptionForm: FormGroup;
 
 
-    constructor(private _eventService: EventService, public builder: FormBuilder, private _errorMsgHandle: ErrorMsgHandle) {
+    constructor(private _eventService: EventService, public builder: FormBuilder) {
 
         this.name = new FormControl("", [Validators.required]);
         this.email = new FormControl('', [Validators.required]);
@@ -47,7 +47,7 @@ export class EventSubscribeComponent  {
             this.inscriptionIntended.eventId = this.eventId;
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
                 .subscribe(status => this.getSuccesrMsg(status),
-                error => this._errorMsgHandle.getErrorMsg(error));
+                error => error);
             this.modal = "modal";     //<------------------close modal        
         } else {
             this.modal = "";
@@ -72,6 +72,13 @@ export class EventSubscribeComponent  {
         
     }
 
+    getSuccesrMsg(status) {
+        if (status == 200) {
+            toastr.success("You've signed up for the event");           
+            this.resetForm();
+        }
+    }
+
 
     resetForm() {
         this.inscriptionIntended.firstName = "";
@@ -79,13 +86,5 @@ export class EventSubscribeComponent  {
         this.inscriptionIntended.lastName = "";
         this.active = false;
         setTimeout(() => this.active = true, 0);
-    }
-
-    getSuccesrMsg(status) {
-        if (status == 200) {
-            toastr.success("You've signed up for the event");
-           
-            this.resetForm();
-        }
     }
 }
