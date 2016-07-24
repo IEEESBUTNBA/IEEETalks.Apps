@@ -9,12 +9,13 @@ import 'rxjs/add/operator/toPromise';
 import {EventsListComponet} from "./events/events-list.component";
 import {EventDetailComponent}from"./events/event-detail.component";
 import {EventService} from "./events/event.service";
+import {ErrorMsgHandle} from "./shared/errorMsgHandle";
 
 @Component({
     selector: "app",
     templateUrl:"templates/shared/app.component.html" ,
     directives: [ROUTER_DIRECTIVES],
-    providers: [EventService ]
+    providers: [EventService, ErrorMsgHandle]
 })
        
 export class AppComponent {

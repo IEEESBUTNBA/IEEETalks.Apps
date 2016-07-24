@@ -12,15 +12,17 @@ var core_1 = require("@angular/core");
 var router_1 = require('@angular/router');
 var event_service_1 = require("./event.service");
 var event_subscribe_component_1 = require("./event.subscribe.component");
+var errorMsgHandle_1 = require("../shared/errorMsgHandle");
 var EventDetailComponent = (function () {
-    function EventDetailComponent(_route, _eventService, _router) {
+    function EventDetailComponent(_route, _eventService, _router, _errorMsgHandle) {
         this._route = _route;
         this._eventService = _eventService;
         this._router = _router;
+        this._errorMsgHandle = _errorMsgHandle;
     }
     EventDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._sub = this._route
+        this._routeParam = this._route
             .params
             .subscribe(function (params) {
             _this.id = params['id'];
@@ -29,11 +31,8 @@ var EventDetailComponent = (function () {
     };
     EventDetailComponent.prototype.getEvent = function (id) {
         var _this = this;
-        this._eventService.getEvent(this.id)
-            .subscribe(function (event) { return _this.event = event; }, function (error) { return _this.errorMessage = error; });
-    };
-    EventDetailComponent.prototype.getEventPromise = function (id) {
-        this._eventService.getEvent(id);
+        this._eventService.getEvent(id)
+            .subscribe(function (event) { return _this.event = event; }, function (error) { return _this._errorMsgHandle.getErrorMsg(error); });
     };
     EventDetailComponent.prototype.onBack = function () {
         this._router.navigate(['/events']);
@@ -43,9 +42,8 @@ var EventDetailComponent = (function () {
             templateUrl: "templates/event/event-detail.component.html",
             directives: [event_subscribe_component_1.EventSubscribeComponent]
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, event_service_1.EventService, router_1.Router, errorMsgHandle_1.ErrorMsgHandle])
     ], EventDetailComponent);
     return EventDetailComponent;
 }());
 exports.EventDetailComponent = EventDetailComponent;
-//# sourceMappingURL=event-detail.component.js.map

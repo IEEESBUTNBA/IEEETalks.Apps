@@ -48,8 +48,7 @@ export class EventService {
         return body.items || {};
     }
 
-    private handleError(error: Response) {
-        //console.error(error);
+    private handleError(error: Response) {        
         return Observable.throw(error || "server error");
     }
 

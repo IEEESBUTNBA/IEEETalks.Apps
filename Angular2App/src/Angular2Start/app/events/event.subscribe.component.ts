@@ -3,6 +3,7 @@ import {FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVE
 
 import {IinscriptionIntended, InscriptionIntended} from "../shared/inscriptionIntended";
 import {EventService} from "./event.service";
+import {ErrorMsgHandle} from "../shared/errorMsgHandle";
 
 
 @Component({
@@ -19,6 +20,7 @@ export class EventSubscribeComponent  {
     inscriptionIntended: IinscriptionIntended = new InscriptionIntended("", "", "", "");
     active = true;
     modal: string;
+    
 
 
     name: FormControl;
@@ -27,7 +29,7 @@ export class EventSubscribeComponent  {
     subcriptionForm: FormGroup;
 
 
-    constructor(private _eventService: EventService, public builder: FormBuilder) {
+    constructor(private _eventService: EventService, public builder: FormBuilder, private _errorMsgHandle: ErrorMsgHandle) {
 
         this.name = new FormControl("", [Validators.required]);
         this.email = new FormControl('', [Validators.required]);
@@ -45,7 +47,7 @@ export class EventSubscribeComponent  {
             this.inscriptionIntended.eventId = this.eventId;
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
                 .subscribe(status => this.getSuccesrMsg(status),
-                error => this.getErrorMsg(error));
+                error => this._errorMsgHandle.getErrorMsg(error));
             this.modal = "modal";     //<------------------close modal        
         } else {
             this.modal = "";
@@ -72,6 +74,9 @@ export class EventSubscribeComponent  {
 
 
     resetForm() {
+        this.inscriptionIntended.firstName = "";
+        this.inscriptionIntended.email = "";
+        this.inscriptionIntended.lastName = "";
         this.active = false;
         setTimeout(() => this.active = true, 0);
     }
@@ -79,25 +84,8 @@ export class EventSubscribeComponent  {
     getSuccesrMsg(status) {
         if (status == 200) {
             toastr.success("You've signed up for the event");
-            this.inscriptionIntended.firstName = "";
-            this.inscriptionIntended.email = "";
-            this.inscriptionIntended.lastName = "";
+           
             this.resetForm();
-        }
-    }
-
-     ///TODO move this to a more generic componet for handling all errorMsg in the app
-
-    getErrorMsg(error) {
-        if (error.status == 409) {
-            for (var item of error.json()) {
-                toastr.error(item.ErrorMessage);
-            }            
-        }
-        if (error.status == 500) {
-            for (var item of error.json()) {
-                toastr.error(item.ErrorMessage);
-            }
         }
     }
 }

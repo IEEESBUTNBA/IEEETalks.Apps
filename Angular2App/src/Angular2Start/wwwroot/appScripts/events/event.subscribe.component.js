@@ -12,10 +12,12 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var inscriptionIntended_1 = require("../shared/inscriptionIntended");
 var event_service_1 = require("./event.service");
+var errorMsgHandle_1 = require("../shared/errorMsgHandle");
 var EventSubscribeComponent = (function () {
-    function EventSubscribeComponent(_eventService, builder) {
+    function EventSubscribeComponent(_eventService, builder, _errorMsgHandle) {
         this._eventService = _eventService;
         this.builder = builder;
+        this._errorMsgHandle = _errorMsgHandle;
         this.inscriptionIntended = new inscriptionIntended_1.InscriptionIntended("", "", "", "");
         this.active = true;
         this.name = new forms_1.FormControl("", [forms_1.Validators.required]);
@@ -32,7 +34,7 @@ var EventSubscribeComponent = (function () {
         if (this.subcriptionForm.status == "VALID") {
             this.inscriptionIntended.eventId = this.eventId;
             this._eventService.inscriptionToEvent(this.inscriptionIntended)
-                .subscribe(function (status) { return _this.getSuccesrMsg(status); }, function (error) { return _this.getErrorMsg(error); });
+                .subscribe(function (status) { return _this.getSuccesrMsg(status); }, function (error) { return _this._errorMsgHandle.getErrorMsg(error); });
             this.modal = "modal"; //<------------------close modal        
         }
         else {
@@ -57,31 +59,16 @@ var EventSubscribeComponent = (function () {
     };
     EventSubscribeComponent.prototype.resetForm = function () {
         var _this = this;
+        this.inscriptionIntended.firstName = "";
+        this.inscriptionIntended.email = "";
+        this.inscriptionIntended.lastName = "";
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
     EventSubscribeComponent.prototype.getSuccesrMsg = function (status) {
         if (status == 200) {
             toastr.success("You've signed up for the event");
-            this.inscriptionIntended.firstName = "";
-            this.inscriptionIntended.email = "";
-            this.inscriptionIntended.lastName = "";
             this.resetForm();
-        }
-    };
-    ///TODO move this to a more generic componet for handling all errorMsg in the app
-    EventSubscribeComponent.prototype.getErrorMsg = function (error) {
-        if (error.status == 409) {
-            for (var _i = 0, _a = error.json(); _i < _a.length; _i++) {
-                var item = _a[_i];
-                toastr.error(item.ErrorMessage);
-            }
-        }
-        if (error.status == 500) {
-            for (var _b = 0, _c = error.json(); _b < _c.length; _b++) {
-                var item = _c[_b];
-                toastr.error(item.ErrorMessage);
-            }
         }
     };
     __decorate([
@@ -95,9 +82,8 @@ var EventSubscribeComponent = (function () {
             providers: [],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, forms_1.FormBuilder])
+        __metadata('design:paramtypes', [event_service_1.EventService, forms_1.FormBuilder, errorMsgHandle_1.ErrorMsgHandle])
     ], EventSubscribeComponent);
     return EventSubscribeComponent;
 }());
 exports.EventSubscribeComponent = EventSubscribeComponent;
-//# sourceMappingURL=event.subscribe.component.js.map

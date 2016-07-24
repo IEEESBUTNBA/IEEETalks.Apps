@@ -11,17 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var event_service_1 = require("./event.service");
+var errorMsgHandle_1 = require("../shared/errorMsgHandle");
 var EventsListComponet = (function () {
-    function EventsListComponet(_eventService, route, _router) {
+    function EventsListComponet(_eventService, route, _router, _errorMsgHandle) {
         this._eventService = _eventService;
         this.route = route;
         this._router = _router;
+        this._errorMsgHandle = _errorMsgHandle;
         this.pageTitle = "Events List";
     }
     EventsListComponet.prototype.ngOnInit = function () {
         var _this = this;
         this._eventService.getEvents()
-            .subscribe(function (events) { return _this.eventList = events; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (events) { return _this.eventList = events; }, function (error) { return _this._errorMsgHandle.getErrorMsg(error); });
     };
     EventsListComponet.prototype.onSelect = function (event) {
         this._router.navigate(['/event', event.id]);
@@ -31,9 +33,8 @@ var EventsListComponet = (function () {
             templateUrl: "templates/event/events-list.component.html",
             directives: [router_1.ROUTER_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute, router_1.Router, errorMsgHandle_1.ErrorMsgHandle])
     ], EventsListComponet);
     return EventsListComponet;
 }());
 exports.EventsListComponet = EventsListComponet;
-//# sourceMappingURL=events-list.component.js.map

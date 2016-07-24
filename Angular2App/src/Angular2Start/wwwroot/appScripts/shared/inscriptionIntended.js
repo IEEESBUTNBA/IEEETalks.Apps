@@ -9,4 +9,3 @@ var InscriptionIntended = (function () {
     return InscriptionIntended;
 }());
 exports.InscriptionIntended = InscriptionIntended;
-//# sourceMappingURL=inscriptionIntended.js.map
