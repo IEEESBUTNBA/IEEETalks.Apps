@@ -56,7 +56,7 @@ export class EventSubscribeComponent  {
     }
    
     getFormError() {
-        toastr.clear();
+        toastr.remove();
         if (this.name.hasError("required")) {
             toastr.warning("Name is required");
         }

@@ -41,7 +41,7 @@ var EventSubscribeComponent = (function () {
         }
     };
     EventSubscribeComponent.prototype.getFormError = function () {
-        toastr.clear();
+        toastr.remove();
         if (this.name.hasError("required")) {
             toastr.warning("Name is required");
         }
