@@ -7,6 +7,9 @@
     "typings": "typings"
   }, 
 
+
+
+
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
