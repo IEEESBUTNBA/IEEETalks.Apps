@@ -1,15 +1,8 @@
 {
   "_args": [
     [
-      {
-        "name": "rxjs",
-        "raw": "rxjs@5.0.0-beta.6",
-        "rawSpec": "5.0.0-beta.6",
-        "scope": null,
-        "spec": "5.0.0-beta.6",
-        "type": "version"
-      },
-      "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
+      "rxjs@5.0.0-beta.6",
+      "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
     ]
   ],
   "_from": "rxjs@5.0.0-beta.6",
@@ -43,7 +36,7 @@
   "_shasum": "cb6dc46d6ddfedfeefc9b15dafd09c34a4370d23",
   "_shrinkwrap": null,
   "_spec": "rxjs@5.0.0-beta.6",
-  "_where": "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
+  "_where": "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
   "author": {
     "email": "blesh@netflix.com",
     "name": "Ben Lesh"

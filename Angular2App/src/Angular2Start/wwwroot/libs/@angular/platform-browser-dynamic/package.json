@@ -1,15 +1,8 @@
 {
   "_args": [
     [
-      {
-        "name": "@angular/platform-browser-dynamic",
-        "raw": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-        "rawSpec": "2.0.0-rc.4",
-        "scope": "@angular",
-        "spec": "2.0.0-rc.4",
-        "type": "version"
-      },
-      "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
+      "@angular/platform-browser-dynamic@2.0.0-rc.4",
+      "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
     ]
   ],
   "_from": "@angular/platform-browser-dynamic@2.0.0-rc.4",
@@ -43,7 +36,7 @@
   "_shasum": "8653d31018c54c65a6d88864bb0af8d024691788",
   "_shrinkwrap": null,
   "_spec": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-  "_where": "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
+  "_where": "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
   "author": {
     "name": "angular"
   },

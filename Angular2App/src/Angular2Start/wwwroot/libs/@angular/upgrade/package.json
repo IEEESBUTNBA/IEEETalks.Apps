@@ -1,15 +1,8 @@
 {
   "_args": [
     [
-      {
-        "name": "@angular/upgrade",
-        "raw": "@angular/upgrade@2.0.0-rc.4",
-        "rawSpec": "2.0.0-rc.4",
-        "scope": "@angular",
-        "spec": "2.0.0-rc.4",
-        "type": "version"
-      },
-      "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
+      "@angular/upgrade@2.0.0-rc.4",
+      "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start"
     ]
   ],
   "_from": "@angular/upgrade@2.0.0-rc.4",
@@ -43,7 +36,7 @@
   "_shasum": "aa7d56b1c78fca9c0165acf6952b26d0cda81999",
   "_shrinkwrap": null,
   "_spec": "@angular/upgrade@2.0.0-rc.4",
-  "_where": "C:\\Users\\Ignacio\\Documents\\GitHub\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
+  "_where": "c:\\Users\\GermanKuber\\Source\\Repos\\IEEE\\IEEETalks.Apps\\Angular2App\\src\\Angular2Start",
   "author": {
     "name": "angular"
   },
