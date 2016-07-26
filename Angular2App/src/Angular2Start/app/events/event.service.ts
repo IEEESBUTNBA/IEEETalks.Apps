@@ -25,6 +25,8 @@ export class EventService {
     }
     getEventsPagination(pageIndex: number): Observable<IEventResponse> {
 
+
+
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
        
