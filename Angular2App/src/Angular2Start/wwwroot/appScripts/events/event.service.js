@@ -27,6 +27,16 @@ var EventService = (function () {
             .do(function (data) { return console.log("ALL" + JSON.stringify(data)); })
             .catch(function (error) { return _this.handleError(error); });
     };
+    EventService.prototype.getEventsPagination = function (pageIndex, pageSize) {
+        var _this = this;
+        var body = JSON.stringify({ 'request': { 'PageSize': 20, 'CurrentPage': 1 } });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.get(this._eventUrl, options)
+            .map(this.extractData)
+            .do(function (data) { return console.log("ALL" + JSON.stringify(data)); })
+            .catch(function (error) { return _this.handleError(error); });
+    };
     EventService.prototype.getEvent = function (id) {
         var _this = this;
         return this._http.get(this._eventUrl + "/" + id)

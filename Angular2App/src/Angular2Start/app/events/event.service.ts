@@ -23,6 +23,15 @@ export class EventService {
             .do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
+    getEventsPagination(pageIndex: number, pageSize: number): Observable<IEvent[]> {
+        let body = JSON.stringify({ 'request': { 'PageSize': 20, 'CurrentPage': 1 } });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._eventUrl, options)
+            .map(this.extractData)
+            .do(data => console.log("ALL" + JSON.stringify(data)))
+            .catch(error => this.handleError(error));
+    }
 
     getEvent(id): Observable<IEvent> {
         return this._http.get(this._eventUrl + "/" + id)
@@ -50,9 +59,9 @@ export class EventService {
     }
 
     private handleError(error: Response) {
-        this._errorMsgHandle.getErrorMsg(error);                   
+        this._errorMsgHandle.getErrorMsg(error);
         return Observable.throw(error || "server error");
-            
+
     }
 
 }

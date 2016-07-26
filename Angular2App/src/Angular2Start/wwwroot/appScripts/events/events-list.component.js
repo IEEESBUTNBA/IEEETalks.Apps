@@ -11,27 +11,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var event_service_1 = require("./event.service");
+var angular2_infinite_scroll_1 = require('angular2-infinite-scroll');
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
 var EventsListComponet = (function () {
-    function EventsListComponet(_eventService, route, _router) {
+    function EventsListComponet(_http, _eventService, route, _router) {
+        this._http = _http;
         this._eventService = _eventService;
         this.route = route;
         this._router = _router;
+        this.validate = true;
+        this.paginationCount = 1;
         this.pageTitle = "Events List";
+        this.eventList = new Array();
     }
     EventsListComponet.prototype.ngOnInit = function () {
-        var _this = this;
-        this._eventService.getEvents()
-            .subscribe(function (events) { return _this.eventList = events; }, function (error) { return error; });
+        this.getEvents();
     };
     EventsListComponet.prototype.onSelect = function (event) {
         this._router.navigate(['/event', event.id]);
     };
+    EventsListComponet.prototype.handleError = function (error) {
+        // this._errorMsgHandle.getErrorMsg(error);                   
+        return Observable_1.Observable.throw(error || "server error");
+    };
+    EventsListComponet.prototype.onScroll = function () {
+        if (this.validate) {
+            this.getEvents();
+        }
+    };
+    EventsListComponet.prototype.validatePagination = function () {
+        this.validate = true;
+        this.getEvents();
+    };
+    EventsListComponet.prototype.getEvents = function () {
+        var _this = this;
+        this._eventService.getEventsPagination(this.paginationCount, 15)
+            .subscribe(function (events) {
+            events.forEach(function (element) {
+                _this.eventList.push(element);
+            });
+            ++_this.paginationCount;
+            if (_this.paginationCount % 3 == 0) {
+                _this.validate = false;
+            }
+        }, function (error) { return error; });
+    };
     EventsListComponet = __decorate([
         core_1.Component({
             templateUrl: "templates/event/events-list.component.html",
-            directives: [router_1.ROUTER_DIRECTIVES]
+            directives: [router_1.ROUTER_DIRECTIVES, angular2_infinite_scroll_1.InfiniteScroll]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [http_1.Http, event_service_1.EventService, router_1.ActivatedRoute, router_1.Router])
     ], EventsListComponet);
     return EventsListComponet;
 }());

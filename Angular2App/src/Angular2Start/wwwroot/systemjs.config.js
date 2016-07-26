@@ -5,7 +5,8 @@
         'app': 'appScripts', // 'dist',
         'rxjs': 'libs/rxjs',
         'angular2-in-memory-web-api': 'libs/angular2-in-memory-web-api',
-        '@angular': 'libs/@angular'
+        '@angular': 'libs/@angular',
+        'angular2-infinite-scroll': 'libs/angular2-infinite-scroll/src'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -13,20 +14,24 @@
         'app': { main: 'main.js', defaultExtension: 'js' },
         'rxjs': { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+        'angular2-infinite-scroll': {
+            main: 'infinite-scroll',
+            defaultExtension: 'js'
+        }
     };
 
     var packageNames = [
-      '@angular/common',
-      '@angular/compiler',
-      '@angular/core',
-      '@angular/http',
-      '@angular/platform-browser',
-      '@angular/platform-browser-dynamic',
-      '@angular/router',
-      '@angular/router-deprecated',
-      '@angular/testing',
-      '@angular/upgrade',
-      '@angular/forms'
+        '@angular/common',
+        '@angular/compiler',
+        '@angular/core',
+        '@angular/http',
+        '@angular/platform-browser',
+        '@angular/platform-browser-dynamic',
+        '@angular/router',
+        '@angular/router-deprecated',
+        '@angular/testing',
+        '@angular/upgrade',
+        '@angular/forms'
     ];
 
     // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }

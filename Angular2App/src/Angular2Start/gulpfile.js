@@ -19,6 +19,7 @@ gulp.task('clean', function () {
 gulp.task("scriptsNStyles", () => {
     gulp.src([
             'es6-shim/es6-shim.js',
+            'node_modules/angular2-infinite-scroll/src/*',
             'es6-shim/es6-shim.map',
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
@@ -28,7 +29,8 @@ gulp.task("scriptsNStyles", () => {
             '@angular/**',
             'jquery/dist/jquery.*js',
             'bootstrap/dist/js/bootstrap.*js',
-            'toastr/toastr.js'
+            'toastr/toastr.js',
+            'node_modules/requirejs/requirejs.js',
     ], {
         cwd: "node_modules/**"
     })
