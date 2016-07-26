@@ -2,7 +2,7 @@
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
-import { IEvent } from "./event";
+import { IEvent,IEventResponse } from "./event";
 import {IinscriptionIntended} from "../shared/inscriptionIntended";
 import {url} from "../shared/urlConstant";
 import {ErrorMsgHandleService} from "../shared/errorMsgHandle.service";
@@ -23,12 +23,13 @@ export class EventService {
             .do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
-    getEventsPagination(pageIndex: number, pageSize: number): Observable<IEvent[]> {
-        let body = JSON.stringify({ 'request': { 'PageSize': 20, 'CurrentPage': 1 } });
+    getEventsPagination(pageIndex: number): Observable<IEventResponse> {
+
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this._http.get(this._eventUrl, options)
-            .map(this.extractData)
+       
+        return this._http.get(`${this._eventUrl}?request.currentPage=${pageIndex}`, options)
+            .map(data => data.json())
             .do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }

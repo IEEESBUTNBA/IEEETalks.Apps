@@ -21,7 +21,8 @@ var EventsListComponet = (function () {
         this.route = route;
         this._router = _router;
         this.validate = true;
-        this.paginationCount = 1;
+        this.hasMore = true;
+        this.paginationCount = 0;
         this.pageTitle = "Events List";
         this.eventList = new Array();
     }
@@ -46,14 +47,17 @@ var EventsListComponet = (function () {
     };
     EventsListComponet.prototype.getEvents = function () {
         var _this = this;
-        this._eventService.getEventsPagination(this.paginationCount, 15)
-            .subscribe(function (events) {
-            events.forEach(function (element) {
-                _this.eventList.push(element);
-            });
-            ++_this.paginationCount;
-            if (_this.paginationCount % 3 == 0) {
-                _this.validate = false;
+        this._eventService.getEventsPagination(this.paginationCount)
+            .subscribe(function (response) {
+            _this.hasMore = response.hasMore;
+            if (response.items != null) {
+                response.items.forEach(function (element) {
+                    _this.eventList.push(element);
+                });
+                ++_this.paginationCount;
+                if (_this.hasMore && _this.paginationCount % 3 == 0) {
+                    _this.validate = false;
+                }
             }
         }, function (error) { return error; });
     };

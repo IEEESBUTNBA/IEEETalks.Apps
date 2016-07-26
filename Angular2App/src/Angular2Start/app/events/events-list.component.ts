@@ -1,7 +1,7 @@
 ﻿import {Component, OnInit} from "@angular/core";
 import { ActivatedRoute, ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {url} from "../shared/urlConstant";
-import {IEvent} from "./event";
+import {IEvent, IEventResponse} from "./event";
 import {EventService} from "./event.service";
 import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
@@ -17,7 +17,8 @@ import { Observable } from "rxjs/Observable";
 
 export class EventsListComponet implements OnInit {
     validate: boolean = true;
-    paginationCount = 1;
+    hasMore: boolean = true;
+    paginationCount = 0;
     pageTitle: string = "Events List";
     eventList: IEvent[] = new Array<IEvent>();
     errorMessage: string;
@@ -26,9 +27,8 @@ export class EventsListComponet implements OnInit {
     }
 
     ngOnInit(): void {
-
-      this.getEvents();
-            }
+        this.getEvents();
+    }
 
     onSelect(event: IEvent): void {
         this._router.navigate(['/event', event.id]);
@@ -41,27 +41,31 @@ export class EventsListComponet implements OnInit {
     }
     onScroll() {
         if (this.validate) {
-           this.getEvents();
+            this.getEvents();
         }
     }
-    validatePagination():void{
-        this.validate= true;
+    validatePagination(): void {
+        this.validate = true;
         this.getEvents();
     }
 
 
-    private getEvents():void{
-         this._eventService.getEventsPagination(this.paginationCount, 15)
-                .subscribe(events => {
-                    events.forEach(element => {
+    private getEvents(): void {
+        this._eventService.getEventsPagination(this.paginationCount)
+            .subscribe(response => {
+                this.hasMore = response.hasMore;
+                if (response.items != null) {
+                    
+                    response.items.forEach(element => {
                         this.eventList.push(element);
                     });
                     ++this.paginationCount;
-                    if (this.paginationCount% 3 ==0){
-                        this.validate= false;
+                    if (this.hasMore && this.paginationCount % 3 == 0) {
+                        this.validate = false;
                     }
-                },
-                error => error);
+                }
+            },
+            error => error);
     }
 
 }
