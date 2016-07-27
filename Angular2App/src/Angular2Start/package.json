@@ -5,6 +5,7 @@
   "scripts": {
     "start": "concurrently \"npm run gulp\"",
     "postinstall": "typings install",
+    "preinstall": "npm i -g gulp-cli",
     "typings": "typings",
     "lite": "lite-server",
     "gulp": "gulp"
