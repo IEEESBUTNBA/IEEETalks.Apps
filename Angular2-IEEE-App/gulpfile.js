@@ -5,8 +5,13 @@ var tsProject = ts.createProject("tsconfig.json");
 gulp.task("ts", function () {
     tsProject.src()        
         .pipe(ts(tsProject)).js        
-        .pipe(gulp.dest('app/**'));
+        .pipe(gulp.dest(function (file) {
+            return file.base;
+        }));
 });
 
+gulp.task("watch",function () {
+    gulp.watch('**/*.ts',["ts"]);
+});
 
-gulp.task("default",['ts']);
+gulp.task("default",['ts','watch']);
