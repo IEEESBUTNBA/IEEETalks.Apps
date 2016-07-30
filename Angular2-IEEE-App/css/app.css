@@ -85,3 +85,16 @@
 footer{
     height: 100px;
     }
+
+
+.moreButtonDiv{
+       width: 100%;
+  text-align: center;
+    }
+
+ .moreButton{
+     background-color:rgba(187, 187, 187,0.8);
+     border-radius:5px;
+     color:#000000;
+    padding:0 200px ;
+    }   
