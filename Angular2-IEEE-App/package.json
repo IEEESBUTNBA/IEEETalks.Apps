@@ -1,12 +1,16 @@
 {
   "name": "angular-2-ieee-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "", 
+  "main": "main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server"
+    "lite": "lite-server",    
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings"
   },
   "author": "",
   "license": "ISC",

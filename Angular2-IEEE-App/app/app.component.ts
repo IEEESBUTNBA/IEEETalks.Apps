@@ -15,7 +15,8 @@ import {ErrorMsgHandleService} from "./shared/errorMsgHandle.service";
     selector: "app",
     templateUrl:"app/app.component.html" ,
     directives: [ROUTER_DIRECTIVES],
-    providers: [EventService, ErrorMsgHandleService]
+    providers: [EventService, ErrorMsgHandleService],
+    precompile:[EventDetailComponent,EventsListComponet]
 })
        
 export class AppComponent {
