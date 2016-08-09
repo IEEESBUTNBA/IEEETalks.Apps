@@ -5,18 +5,12 @@
   "main": "main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "start": "ntsc && concurrently \"ntsc -w\" \"npm run lite\" ",
-    "lite": "lite-server",
-    "ntsc": "ntsc"
-=======
     "start": "ntsc && concurrently \"npm run ntsc:w\" \"npm run lite\" ",
     "lite": "lite-server",    
     "postinstall": "typings install",
     "ntsc": "ntsc",
     "ntsc:w": "ntsc -w",
     "typings": "typings"
->>>>>>> dev
   },
   "author": "",
   "license": "ISC",
@@ -44,11 +38,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "ntypescript": "^1.201608090009.1",
-=======
-    "ntypescript": "1.201608090009.1",
->>>>>>> dev
+    "ntypescript": "^1.201608090009.1",  
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
