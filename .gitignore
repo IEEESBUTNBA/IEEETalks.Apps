@@ -7,3 +7,5 @@ node_modules/
 **/app/**/*.js
 *.js.map
 *.log
+/.idea
+/Angular2-IEEE-App/.idea
