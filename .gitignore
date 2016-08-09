@@ -2,6 +2,7 @@
 
 node_modules/
 .vscode/
+.ide/
 **/app/*.js
 **/app/**/*.js
 *.js.map
