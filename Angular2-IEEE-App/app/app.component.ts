@@ -21,5 +21,5 @@ import {ErrorMsgHandleService} from "./shared/errorMsgHandle.service";
        
 export class AppComponent {
 
-    pageTitle: string = "IEEE";
+    pageTitle: string = "IEEETalks";
 }
