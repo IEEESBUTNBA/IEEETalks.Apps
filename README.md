@@ -17,7 +17,6 @@ _Before run this application, you must execute the following commands in the con
 
 1. npm install --dev
 2. npm start
-3. Run (F5)
  
 --
 
