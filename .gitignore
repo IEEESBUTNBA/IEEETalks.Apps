@@ -7,3 +7,4 @@ node_modules/
 **/app/**/*.js
 *.js.map
 *.log
+.idea
