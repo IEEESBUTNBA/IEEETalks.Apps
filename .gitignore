@@ -7,5 +7,9 @@ node_modules/
 **/app/**/*.js
 *.js.map
 *.log
+<<<<<<< HEAD
 /.idea
 /Angular2-IEEE-App/.idea
+=======
+.idea
+>>>>>>> dev
