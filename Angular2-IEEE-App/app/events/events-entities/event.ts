@@ -11,11 +11,6 @@
     eventDate: Date;
 }
 
-export interface IEventResponse {
-    hasMore: boolean;
-    totalRecords: number;
-    items: Array<IEvent>;
-}
 export class Event implements IEvent {
     constructor(
         public id: string,

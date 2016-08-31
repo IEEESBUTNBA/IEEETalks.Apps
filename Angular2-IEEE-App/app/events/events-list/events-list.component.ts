@@ -1,16 +1,13 @@
 import {Component, OnInit} from "@angular/core";
-import { ActivatedRoute, ROUTER_DIRECTIVES, Router} from "@angular/router";
-import {url} from "../../shared/urlConstant";
-import {IEvent, IEventResponse} from "../event";
+import { ActivatedRoute, Router} from "@angular/router";
+import {IEvent } from "../events-entities/event";
+import {IEventResponse} from "../events-entities/eventResponse";
 import {EventService} from "../event-service/event.service";
-import { InfiniteScroll } from 'angular2-infinite-scroll';
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 
 
 @Component({
     templateUrl: "app/events/events-list/events-list.component.html",
-    directives: [ROUTER_DIRECTIVES, InfiniteScroll]
+    selector:"list"   
 })
 
 
@@ -18,11 +15,11 @@ import { Observable } from "rxjs/Observable";
 export class EventsListComponet implements OnInit {
     validate: boolean = true;
     hasMore: boolean = true;
-    paginationCount = 0;
+    paginationCount: number = 0;
     pageTitle: string = "Events List";
     eventList: IEvent[] = new Array<IEvent>();
-    errorMessage: string;
-    constructor(private _http: Http, private _eventService: EventService, private route: ActivatedRoute, private _router: Router) {
+    errorMessage: string;    
+    constructor(private _eventService: EventService,private _router:Router) {
 
     }
 
@@ -30,15 +27,10 @@ export class EventsListComponet implements OnInit {
         this.getEvents();
     }
 
-    onSelect(event: IEvent): void {
-        this._router.navigate(['/event', event.id]);
+    onSelect(event: IEvent): void {      
+        this._router.navigate(['/event',event.id]);
 
-    }
-    private handleError(error: Response) {
-        // this._errorMsgHandle.getErrorMsg(error);                   
-        return Observable.throw(error || "server error");
-
-    }
+    }    
     onScroll() {
         if (this.validate) {
             this.getEvents();
@@ -50,9 +42,9 @@ export class EventsListComponet implements OnInit {
     }
 
 
-    private getEvents(): void {
+    private getEvents(): void {           
         this._eventService.getEventsPagination(this.paginationCount)
-            .subscribe(response => {
+            .subscribe(response => { 
                 this.hasMore = response.hasMore;
                 if (response.items != null) {
                     

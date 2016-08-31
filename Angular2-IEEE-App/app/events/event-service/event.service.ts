@@ -2,8 +2,9 @@
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
-import { IEvent,IEventResponse } from "../event";
-import {IinscriptionIntended} from "../../shared/inscriptionIntended";
+import { IEvent } from "../events-entities/event";
+import { IEventResponse } from "../events-entities/eventResponse";
+import {IInscriptionIntended} from "../events-entities/inscriptionIntended";
 import {url} from "../../shared/urlConstant";
 import {ErrorMsgHandleService} from "../../shared/errorMsgHandle.service";
 
@@ -23,18 +24,16 @@ export class EventService {
             .do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
-    getEventsPagination(pageIndex: number): Observable<IEventResponse> {
 
-
-
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-       
-        return this._http.get(`${this._eventUrl}?request.currentPage=${pageIndex}`, options)
+    
+    getEventsPagination(pageIndex: number): Observable<IEventResponse> {       
+        return this._http.get(`${this._eventUrl}?request.currentPage=${pageIndex}`)
             .map(data => data.json())
             .do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
+
+
 
     getEvent(id): Observable<IEvent> {
         return this._http.get(this._eventUrl + "/" + id)
@@ -43,12 +42,12 @@ export class EventService {
             .catch(error => this.handleError(error));
     }
 
-    inscriptionToEvent(user: IinscriptionIntended): Observable<IinscriptionIntended> {
+
+
+    inscriptionToEvent(user: IInscriptionIntended): Observable<IInscriptionIntended> {
         let body = JSON.stringify(user);
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        console.log(body);
+        let options = new RequestOptions({ headers: headers });      
 
         return this._http.post(this._inscriptionUrl, body, options)
             .map(user => user.status)
@@ -56,7 +55,7 @@ export class EventService {
 
     }
 
-    private extractData(res: Response) {
+    private extractData(res: Response) {        
         let body = res.json();
         return body.items || {};
     }

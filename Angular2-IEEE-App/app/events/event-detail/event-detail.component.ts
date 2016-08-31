@@ -2,14 +2,11 @@
 import {ActivatedRoute, Router  } from '@angular/router';
 
 import {EventService} from "../event-service/event.service";
-import {IEvent} from "../event";
-import { EventSubscribeComponent} from "../event-subscribe/event.subscribe.component";
+import {IEvent} from "../events-entities/event";
 
 
 @Component({
-    templateUrl: "app/events/event-detail/event-detail.component.html",
-    directives: [EventSubscribeComponent]  
-
+    templateUrl: "app/events/event-detail/event-detail.component.html"    
 })
 
 export class EventDetailComponent implements OnInit {

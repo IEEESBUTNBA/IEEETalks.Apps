@@ -1,7 +1,6 @@
 ﻿import { Component, Input} from "@angular/core";
 import {FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
-
-import {IinscriptionIntended, InscriptionIntended} from "../../shared/inscriptionIntended";
+import {IInscriptionIntended, InscriptionIntended} from "../events-entities/inscriptionIntended";
 import {EventService} from "../event-service/event.service";
 
 
@@ -9,16 +8,14 @@ import {EventService} from "../event-service/event.service";
 @Component({
     templateUrl: "app/events/event-subscribe/event-subscribe.component.html",
     selector: "app-eventsub",
-    providers: [],
-    directives: [REACTIVE_FORM_DIRECTIVES]
+    directives: [REACTIVE_FORM_DIRECTIVES]    
 })
 
 export class EventSubscribeComponent  {
 
 
     @Input() eventId: string;
-    inscriptionIntended: IinscriptionIntended = new InscriptionIntended("", "", "", "");
-    active = true;
+    inscriptionIntended: IInscriptionIntended = new InscriptionIntended("", "", "", "");    
     modal: string;
     
 
@@ -74,17 +71,10 @@ export class EventSubscribeComponent  {
 
     getSuccesrMsg(status) {
         if (status == 200) {
-            toastr.success("You've signed up for the event");           
-            this.resetForm();
+            toastr.success("You've signed up for the event");         
+           
+            this.subcriptionForm.reset();
         }
     }
 
-
-    resetForm() {
-        this.inscriptionIntended.firstName = "";
-        this.inscriptionIntended.email = "";
-        this.inscriptionIntended.lastName = "";
-        this.active = false;
-        setTimeout(() => this.active = true, 0);
-    }
 }
