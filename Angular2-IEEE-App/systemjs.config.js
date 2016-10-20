@@ -10,14 +10,19 @@
 
     '@angular':                   'node_modules/@angular',    
     'rxjs':                       'node_modules/rxjs',
-    'angular2-infinite-scroll': 'node_modules/angular2-infinite-scroll'
+    'angular2-infinite-scroll': 'node_modules/angular2-infinite-scroll',
+    "angular2-masonry": "node_modules/angular2-masonry",
+    "masonry-layout": "node_modules/masonry-layout/dist/masonry.pkgd.js",
+    "ng2-inline-svg":"node_modules/ng2-inline-svg/lib/"
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },    
-    'angular2-infinite-scroll': {main: 'angular2-infinite-scroll',defaultExtension: 'js' }    
+    'angular2-infinite-scroll': {main: 'angular2-infinite-scroll',defaultExtension: 'js' },
+    "angular2-masonry": { defaultExtension: "js", main: "index" }  ,
+     "ng2-inline-svg":  { defaultExtension: "js", main: "index" } 
             
         
   };

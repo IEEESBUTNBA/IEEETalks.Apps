@@ -1,0 +1,119 @@
+.nav-container{    
+    background-color: $nav-bg-color ;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;    
+    width: 100%;
+    min-width: $nav-bar-min-width; 
+    height: auto;
+    color: white;
+    
+    .nav-logo{        
+        margin-left: 20px;
+        margin-right: 30px;   
+        display: block;        
+        width: 100px;
+        height: 70px;
+        background: url("./../svg/IeeeTalk Logo V4.svg");
+        background-size: 100px 70px;  
+        order:1;   
+    }  
+   
+   .nav-search { 
+        display: flex;
+        position: relative;
+        width: 300px;       
+        order:1; 
+        align-items: center;
+        margin-left: auto;
+        margin-right: 50px;
+        .search-label{
+            position: absolute; 
+            right: 8px ;
+            top: 9px;
+            .shape-search {
+                width: 26px;
+                height: 26px;
+                fill: $search-input-color;                
+                vertical-align: bottom;
+            }
+        }
+        input{           
+            color: $search-input-color;
+            font-size: 1.5rem;              
+            padding: 6px 37px 5px 12px;
+            color: black;
+            border-radius: 40px; 
+            border: 1px solid #ccc; 
+            width: 100%; 
+            &::-webkit-input-placeholder{
+                opacity: .3;
+            }         
+        } 
+    }   
+    .nav-user{
+         display: flex;
+         align-items: center;
+         flex-direction: row;          
+         font-size: 20px;  
+         order:1;         
+         .icon-img{
+             margin-right: 20px;
+             margin-left: 10px;
+         }
+         .menuButton{
+             
+         }
+         .shape-menu{
+             width: 26px;
+             height: 26px;
+             fill:$menu-color;                
+             vertical-align: bottom;
+             &:hover{
+                 cursor: pointer;
+             }
+         }
+          h4{
+              margin-right: 10px;
+          }
+          span{
+              margin-left: 10px;
+          }  
+     }   
+}
+
+@include screen-mredia($medium_breackpoint){
+    .nav-user > h5 {       
+     display: none !important;        
+    }   
+    .nav-user{       
+        order: 1;
+    }         
+   .collapse{
+       display: none !important;
+   }    
+   .nav-logo{     
+    background: url("./../svg/IeeeTalk Logo V4-inline.svg")!important;
+     width: 100px !important;
+    height: 50px !important;
+    background-size: 100px 50px !important;    
+    } 
+}
+
+@include screen-mredia($small_breackpoint){
+  .nav-search{ 
+        width: 225px !important;
+         margin-right: 10px !important;
+        .search-label{               
+            width: 130px !important;
+            height: 130px !important;            
+            background-size: 130px 130px !important; 
+             right: -100px !important;
+        
+        }
+        input{            
+            font-size: 1rem !important;                       
+        }  
+    }
+}
+

@@ -1,7 +1,7 @@
-﻿<div id="subscribeModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+﻿<!--<div id="subscribeModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+       
         <div class="modal-content">
 
             <div class="modal-body">
@@ -42,4 +42,35 @@
         </div>
 
     </div>
-</div>
+</div>-->
+
+ <div id="modal" class="modal modal-close" [attr.class]="classModal" (click)='clickOutsideModal($event)' > 
+        <div class="modal-blur"></div>       
+        <div class="modal-content" [attr.class]="modalContent">            
+            <span class="close-button" (click)='modalClose()'>×</span>
+            <div class="modal-header">
+                <h2>Subscribe</h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-flex">
+                    <div class="form-control">
+                         <label class="label"  for="">Email address</label>
+                         <input class="input" type="text" name="email" value=""  [(ngModel)]="inscriptionIntended.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="email" required> 
+                    </div>
+                    <div class="form-control">
+                         <label class="label" for="">Name</label>
+                          <input class="input" type="text" name="name" value="" [(ngModel)]="inscriptionIntended.firstName" [formControl]="name" required> 
+                    </div>
+                    <div class="form-control">
+                         <label class="label" for="">Last Name</label>
+                          <input class="input" type="text" name="" value="" [(ngModel)]="inscriptionIntended.lastName" [formControl]="lastName" required > 
+                    </div>
+                    <div class="form-control">                         
+                          <input class="button danger" type="button" name="" value="Cansel" (click)='modalClose()'> 
+                          <input class="button success" type="button" name="" value="Subscribe"  (click)="onSubscribe()" >                           
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+    </div>

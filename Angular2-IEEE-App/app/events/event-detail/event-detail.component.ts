@@ -14,8 +14,8 @@ export class EventDetailComponent implements OnInit {
     pageTitle: string;    
     event: IEvent;
     id: string;
-    private _routeParam: any;
-   
+    private _routeParam: any; 
+    isOpen:boolean=false;
 
 
     constructor(private _route: ActivatedRoute,
@@ -30,7 +30,8 @@ export class EventDetailComponent implements OnInit {
             .subscribe(params => {
                 this.id = params['id'];              
             });
-        this.getEvent(this.id);         
+        this.getEvent(this.id); 
+        
     }
 
     getEvent(id: string) {
@@ -41,5 +42,13 @@ export class EventDetailComponent implements OnInit {
 
     onBack(): void {       
      this._router.navigate(['/events']);        
+    }
+
+    openModal():void{
+       this.isOpen = true;      
+    }
+
+    closeModal():void{        
+       this.isOpen=false;
     }
 }

@@ -1,0 +1,73 @@
+
+
+.menu-wraper{
+    position: relative;
+    float: right;  
+}
+
+.menu{      
+     position: absolute;   
+     right: 40px;
+     top:10px;     
+     z-index: 2;
+     width: 150px;  
+     min-height: 40px;  
+     background-color: $menu-color;  
+     border-radius: 6px; 
+     transition: .1s ease-in-out;  
+
+    &:before{
+        border: solid;
+        border-color: $menu-color transparent;
+        border-width: 0px 16px 16px  16px;
+        top: -16px;
+        content: "";
+        right: 20px;
+        position: absolute;
+        z-index: 99;
+    }    
+}
+
+.hide-menu{
+    height: 0;
+    opacity: 0 ;
+}
+.menu-items{     
+    .menu-events{
+        text-decoration: none;        
+        h4{
+           text-align: center;
+           margin: 5px;
+           padding: 5px;          
+           color: rgba(0,0,0,1 );
+            border-radius: 5px 5px 5px 5px;
+           &:hover{
+               background: $menu-color*1.2; 
+               cursor: pointer;              
+           }           
+        }
+    }
+}
+
+.menu-user{
+    float: left;
+    border: solid black 2px;
+    margin: 6px;
+    padding: 0px;  
+    background: url("./../svg/114-user.svg");
+    background-size: 50px 50px;  
+    height: 50px;
+    width: 50px;
+    box-shadow: 2px 2px 2px rgb(66, 69, 72);
+}
+
+.menu-settings{  
+    float: left; 
+    border: solid black 2px;
+    margin: 6px;
+    padding: 0px;       
+    background: url("./../svg/149-cog.svg");
+    background-size: 50px 50px;  
+    height: 50px;
+    width: 50px;
+}

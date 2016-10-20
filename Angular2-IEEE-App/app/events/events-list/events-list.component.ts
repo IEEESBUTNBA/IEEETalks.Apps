@@ -1,8 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import { ActivatedRoute, Router} from "@angular/router";
+import { MasonryOptions } from 'angular2-masonry';
+
 import {IEvent } from "../events-entities/event";
 import {IEventResponse} from "../events-entities/eventResponse";
 import {EventService} from "../event-service/event.service";
+
 
 
 @Component({
@@ -58,6 +61,13 @@ export class EventsListComponet implements OnInit {
                 }
             },
             error => error);
+    }
+
+    masonryOptions:MasonryOptions ={
+        gutter:10,
+        transitionDuration:'0.6s',
+        percentPosition:false,
+        fitWidth: true        
     }
 
 }

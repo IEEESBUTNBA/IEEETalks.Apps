@@ -13,7 +13,7 @@
 .la-ball-clip-rotate {
     display: block;
     font-size: 0;
-    color: #fff;
+    color: black;
 }
 .la-ball-clip-rotate.la-dark {
     color: #333;

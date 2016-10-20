@@ -1,0 +1,216 @@
+
+/* buttons */
+@mixin button($color,$bg-color,$radius,$font-size,$padding...){
+     font-weight: 300;     
+     font-size: $font-size;    
+     text-decoration: none;
+     color: $color;
+     text-align: center;
+     padding: $padding;          
+     background: $bg-color; 
+     border-radius: $radius;
+      &:hover{
+      background: $bg-color *1.5!important;
+      cursor:pointer;
+    }
+    &:active{
+        background: $bg-color*.5 !important;
+    }
+}
+.button{   
+
+    &.success{
+         @include button(black,rgb(38, 166, 91),2px,1rem,0.5em .8em);
+         border: 1px solid rgb(38, 166, 91); 
+    }  
+     &.danger{
+         @include button(black,rgb(217, 30, 24),2px,1rem,0.5em .8em);
+         border: 1px solid rgb(217, 30, 24); 
+    }    
+    &.round{
+      @include button(white,rgb(40, 183, 226),50%,1.6rem,0.2em .5em );      
+       width: 20px;     
+       height: 10px; 
+          }       
+   
+}
+
+/*tooltips*/
+
+.tooltip {
+    position: relative;
+    display: inline-block;    
+    text-decoration: none;
+     
+    .tooltiptext {
+        top:-30px;
+        left: -8px;
+         opacity:0;
+         visibility:hidden;
+        width: 120px;
+        background-color: $tooltip;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;  
+        transition: 0.1s ease-in-out;              
+            &:before{
+            border: solid;
+            border-color: $tooltip transparent;
+            border-width: 10px 10px 0px  10px;         
+            top: 24px;
+            content: "";
+            left: 20px;
+            position: absolute;
+            z-index: 99;
+        }    
+    }
+    &:hover .tooltiptext {
+        visibility: visible;
+        opacity:1;
+        transition: 0.2s ease-in-out ;
+        transition-delay: 2s;
+    }
+}
+
+
+/*modal*/
+
+.modal{
+    width: 100%;
+    height: 100%;   
+    position: fixed;     
+    overflow: auto; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);    
+        .modal-content {    
+         position: relative;   
+        background-color: #fefefe;
+         max-width: 800px;
+         min-width: 450px;
+        top:-1000px;
+        margin: 0px auto 0 auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 70%;             
+        transition: 0.5s ease-in-out ;
+
+     .modal-header{
+        text-align: center;         
+       }
+       .modal-body{
+           width: 80%;
+           margin: 20px auto 0 auto;
+       }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 1.3rem;
+            font-weight: bold;
+            &:hover{
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            &:active{
+                color: #aaa;
+            }
+    }
+ 
+  }
+    .modal-effects{
+        top:20%;
+        transition: 0.5s ease-in-out ;
+   }  
+} 
+.modal-open{
+    display: block;
+ }
+.modal-close{
+    display: none;
+ }
+.modal-blur{   
+    transition: 0.2s ease-in-out ;
+    filter:blur(2px);
+} 
+
+
+/*flex form*/
+
+ .form-flex{
+     display: flex;
+     flex-wrap: wrap;
+     min-width: 200px;
+     .form-control{  
+         padding: 10px;
+         width: 100%;
+         display: flex;
+         align-items: center;   
+           justify-content:flex-end ;                     
+        label{           
+            font-size: 1rem;
+            font-weight:bold;
+            margin-right: 10px;          
+        }
+        input[type="text"]{
+            width: 70%;
+            min-width: 100px;             
+            margin-left: auto;
+            font-size: 1rem; 
+            border-radius: 2px; 
+            border-bottom: 1px solid black; 
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+           box-shadow: none;           
+          }
+       input[type="button"]{
+           margin: 5px;           
+       }   
+     }     
+
+     .animate-form-control{
+      width: 100%;
+      min-width: 100px;
+      padding: 10px;
+      display: flex;
+      align-items: center;  
+      position: relative;            
+         label{
+            position: absolute; 
+            left:15px;             
+             top:17px;               
+            color: black;     
+            font-size: 1rem;
+            font-weight:bold;            
+            transition: 0.3s ease ;  
+            z-index: 20; 
+            pointer-events: none;                                                   
+        }
+        input[type="text"]{
+            width: 100%;
+            padding-left: 5px;
+            min-width: 100px;             
+            margin-left: auto;
+            font-size: 1.5rem; 
+            border-radius: 5px; 
+            border: 1px solid black;          
+ 
+          }    
+     }
+    
+ } 
+ .ng-untouched{
+      border-left: 1px solid black !important ;
+ }
+ .ng-valid[required] {
+           border-left: 8px solid #42A948;
+  }              
+.ng-invalid {
+      border-left: 8px solid #a94442;
+  }      

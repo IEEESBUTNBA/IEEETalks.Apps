@@ -1,29 +1,46 @@
-﻿<div class="row">
-    <h2 class="col-sm-12 col-md-12">{{pageTitle}}</h2>
-    <div class="row" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
-        <div class="col-sm-6 col-md-4" *ngFor="let events of eventList">
-            <div class="app-margin app-border app-padding thumbnailBG">
-                <div class="row">
-                    <img [src]='events.image' class="col-sm-10 col-md-10 photo" />
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-md-10 col-lg-10 fontColor">
-                        <h3>{{events.name}}</h3>
-                        <p>{{events.description.substring(0, 100)}}...</p>
-                        <h4>Price: {{events.price | currency: 'USD':true:'1.2-2'}}</h4>
-                        <h4>Location: {{events.location}}</h4>
-                        <button class="btn btn-primary" (click)="onSelect(events)">Detail</button>
+﻿<div class="header ">
+    <div class="header-img">
+        <img class="image-responsive" src="../../../img/header-pic.jpg" alt="">
+    </div>
+    <div class="gradient">
+        <div class="ieee-logo">
+            <h1>IEEE</h1>
+            <h3>Advancing Technology for Humanity</h3>
+        </div>
+        <div class="ieee-welcome">
+            <h1>Welcome</h1>
+        </div>
+    </div>
+</div>
+<div class="gallery">
+    <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
+        <masonry class="masonry_item" [options]="masonryOptions">
+            <div masonry-brick *ngFor="let events of eventList">
+                <div class="gallery-item ">
+                    <div class="gallery-img">
+                        <img class="image-responsive" [src]='events.image'  alt="">
                     </div>
-
+                    <div class="gallery-title-wrapper">
+                        <div class="gallery-title">
+                            <h4 class="title left">{{events.name}}</h4>
+                            <h4 class="title right">{{events.price | currency: 'USD':true:'1.2-2'}}</h4>
+                            <h6 class="title underTitle">{{events.location}}</h6>
+                            <div class="gallery-footer">
+                                <div class="icon-img">
+                                    <img src="img/original%5B1%5D.png" alt="" class="thumbnail-image small">
+                                    <p>Created by Chescalante</p>
+                                </div>
+                                <div class="button-detail">
+                                    <a  class="button round"  (click)="onSelect(events)">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+             </div>
+        </masonry>
+        <div class="moreButtonDiv">
+            <div>
+                <button style="margin: 25px;" *ngIf="!validate" class="btn btn-info moreButton" (click)="validatePagination()">Load More...</button>
             </div>
         </div>
-    </div>  
-</div>
- 
-    <div class="moreButtonDiv">
-        <div>
-            <button style="margin: 25px;" *ngIf="!validate" class="btn btn-info moreButton" (click)="validatePagination()">Load More...</button>
-        </div>
-    
-</div>
