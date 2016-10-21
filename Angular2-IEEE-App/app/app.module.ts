@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from "@angular/http";
-import {FormsModule,FormBuilder} from "@angular/forms";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {InfiniteScrollModule} from 'angular2-infinite-scroll';
 import { MasonryModule } from 'angular2-masonry';
 import { InlineSVGModule } from 'ng2-inline-svg';
@@ -19,9 +19,9 @@ import {ErrorMsgHandleService} from "./shared/errorMsgHandle.service"
 
 
 @NgModule({
-  imports:      [ BrowserModule,HttpModule,routing,FormsModule,InfiniteScrollModule,MasonryModule,InlineSVGModule],
+  imports:      [ BrowserModule,HttpModule,routing,FormsModule,ReactiveFormsModule,InfiniteScrollModule,MasonryModule,InlineSVGModule],
   declarations: [ AppComponent,HeaderBarComponent,EventsListComponet,EventDetailComponent,EventSubscribeComponent],
   bootstrap:    [ AppComponent ],
-  providers:[EventService,ErrorMsgHandleService,FormBuilder]
+  providers:[EventService,ErrorMsgHandleService]
 })
 export class AppModule { }

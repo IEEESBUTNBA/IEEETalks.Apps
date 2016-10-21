@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from "@angular/core";
-import { FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES } from "@angular/forms";
+import { FormControl, FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { IInscriptionIntended, InscriptionIntended } from "../events-entities/inscriptionIntended";
 import { EventService } from "../event-service/event.service";
 
@@ -8,7 +8,7 @@ import { EventService } from "../event-service/event.service";
 @Component({
     templateUrl: "app/events/event-subscribe/event-subscribe.component.html",
     selector: "app-eventsub",
-    directives: [REACTIVE_FORM_DIRECTIVES]
+    //directives: [REACTIVE_FORM_DIRECTIVES]
 })
 
 export class EventSubscribeComponent implements OnInit, OnChanges {
@@ -71,8 +71,9 @@ export class EventSubscribeComponent implements OnInit, OnChanges {
         this.closeModal.emit();
     }
 
-    clickOutsideModal(e): void {       
-        if (e.srcElement.id === 'modal') {
+    clickOutsideModal(e): void {  
+        console.log(e.target.id);     
+        if (e.target.id === 'modal') {
             this.modalClose();
         }
     }

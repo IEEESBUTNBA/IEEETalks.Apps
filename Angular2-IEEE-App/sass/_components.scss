@@ -166,12 +166,15 @@
             border-radius: 2px; 
             border-bottom: 1px solid black; 
             border-top: 1px solid black;
-            border-right: 1px solid black;
-           box-shadow: none;           
+            border-right: 1px solid black;            
+           box-shadow: none;   
           }
        input[type="button"]{
            margin: 5px;           
-       }   
+       } 
+       .ng-untouched{
+              border-left: 1px solid black !important ;
+                 }  
      }     
 
      .animate-form-control{
@@ -205,12 +208,10 @@
      }
     
  } 
- .ng-untouched{
-      border-left: 1px solid black !important ;
- }
+ 
  .ng-valid[required] {
-           border-left: 8px solid #42A948;
+           border-left: 5px solid #42A948;
   }              
 .ng-invalid {
-      border-left: 8px solid #a94442;
+      border-left: 5px solid #a94442;
   }      
