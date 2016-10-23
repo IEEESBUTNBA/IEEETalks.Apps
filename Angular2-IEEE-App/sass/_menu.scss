@@ -34,13 +34,15 @@
 }
 .menu-items{     
     .menu-events{
-        text-decoration: none;        
+        text-decoration: none;             
         h4{
            text-align: center;
+            background: $menu-color*0.9;
            margin: 5px;
            padding: 5px;          
            color: rgba(0,0,0,1 );
             border-radius: 5px 5px 5px 5px;
+             border: solid 1px rgb(125, 125, 125);  
            &:hover{
                background: $menu-color*1.2; 
                cursor: pointer;              

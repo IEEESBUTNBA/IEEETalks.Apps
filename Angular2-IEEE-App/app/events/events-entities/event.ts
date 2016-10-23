@@ -1,4 +1,4 @@
-﻿export interface IEvent {
+export interface IEvent {
     id: string;
     entityId: number;
     name: string;

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit} from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router  } from '@angular/router';
 
 import {EventService} from "../event-service/event.service";
@@ -6,7 +6,8 @@ import {IEvent} from "../events-entities/event";
 
 
 @Component({
-    templateUrl: "app/events/event-detail/event-detail.component.html"    
+    moduleId:module.id,
+    templateUrl: "event-detail.component.html"    
 })
 
 export class EventDetailComponent implements OnInit {

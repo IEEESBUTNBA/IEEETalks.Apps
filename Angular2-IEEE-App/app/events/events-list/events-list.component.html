@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="gallery">
-    <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
+    <!--<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">-->
         <masonry class="masonry_item" [options]="masonryOptions">
             <div masonry-brick *ngFor="let events of eventList">
                 <div class="gallery-item ">
@@ -27,8 +27,8 @@
                             <h6 class="title underTitle">{{events.location}}</h6>
                             <div class="gallery-footer">
                                 <div class="icon-img">
-                                    <img src="img/original%5B1%5D.png" alt="" class="thumbnail-image small">
-                                    <p>Created by Chescalante</p>
+                                    <img src="../../../img/user-close-up.jpg" alt="" class="thumbnail-image small">
+                                    <p>Created by </p>
                                 </div>
                                 <div class="button-detail">
                                     <a  class="button round"  (click)="onSelect(events)">+</a>

@@ -9,8 +9,8 @@ import {EventService} from "../event-service/event.service";
 
 
 @Component({
-    templateUrl: "app/events/events-list/events-list.component.html",
-    selector:"list"   
+    moduleId:module.id,
+    templateUrl: "events-list.component.html",       
 })
 
 
@@ -34,38 +34,44 @@ export class EventsListComponet implements OnInit {
         this._router.navigate(['/event',event.id]);
 
     }    
-    onScroll() {
-        if (this.validate) {
-            this.getEvents();
-        }
-    }
+    // onScroll() {
+    //     if (this.validate) {
+    //         this.getEvents();
+    //     }
+    // }
     validatePagination(): void {
         this.validate = true;
         this.getEvents();
     }
 
 
-    private getEvents(): void {           
-        this._eventService.getEventsPagination(this.paginationCount)
-            .subscribe(response => { 
-                this.hasMore = response.hasMore;
-                if (response.items != null) {
+    // private getEvents(): void {           
+    //     this._eventService.getEventsPagination(this.paginationCount)
+    //         .subscribe(response => { 
+    //             this.hasMore = response.hasMore;
+    //             if (response.items != null) {
                     
-                    response.items.forEach(element => {
-                        this.eventList.push(element);
-                    });
-                    ++this.paginationCount;
-                    if (this.hasMore && this.paginationCount % 3 == 0) {
-                        this.validate = false;
-                    }
-                }
-            },
-            error => error);
+    //                 response.items.forEach(element => {
+    //                     this.eventList.push(element);
+    //                 });
+    //                 ++this.paginationCount;
+    //                 if (this.hasMore && this.paginationCount % 3 == 0) {
+    //                     this.validate = false;
+    //                 }
+    //             }
+    //         },
+    //         error => error);
+    // }
+
+    private getEvents(): void { 
+        this._eventService.getEvents()
+        .subscribe(events=>this.eventList=events,
+         error => error);   
     }
 
     masonryOptions:MasonryOptions ={
         gutter:10,
-        transitionDuration:'0.6s',
+        transitionDuration:'0.3s',
         percentPosition:false,
         fitWidth: true        
     }

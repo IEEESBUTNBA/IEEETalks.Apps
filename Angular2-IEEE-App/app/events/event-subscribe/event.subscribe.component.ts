@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from "@angular/core";
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { IInscriptionIntended, InscriptionIntended } from "../events-entities/inscriptionIntended";
 import { EventService } from "../event-service/event.service";
@@ -6,9 +6,9 @@ import { EventService } from "../event-service/event.service";
 
 
 @Component({
-    templateUrl: "app/events/event-subscribe/event-subscribe.component.html",
-    selector: "app-eventsub",
-    //directives: [REACTIVE_FORM_DIRECTIVES]
+    moduleId:module.id,
+    templateUrl: "event-subscribe.component.html",
+    selector: "app-eventsub"    
 })
 
 export class EventSubscribeComponent implements OnInit, OnChanges {
@@ -78,12 +78,22 @@ export class EventSubscribeComponent implements OnInit, OnChanges {
         }
     }
 
+    // onSubscribe() {
+    //     if (this.subcriptionForm.status == "VALID") {
+    //         this.inscriptionIntended.eventId = this.eventId;
+    //         this._eventService.inscriptionToEvent(this.inscriptionIntended)
+    //             .subscribe(status => this.getSuccesrMsg(status),
+    //             error => error);
+    //         this.modalClose();
+    //     } else {
+    //         this.getFormError();
+    //     }
+    // }
+
+    //just for showing returns valid Allways!!!!!!
     onSubscribe() {
         if (this.subcriptionForm.status == "VALID") {
-            this.inscriptionIntended.eventId = this.eventId;
-            this._eventService.inscriptionToEvent(this.inscriptionIntended)
-                .subscribe(status => this.getSuccesrMsg(status),
-                error => error);
+            this.getSuccesrMsg(200);
             this.modalClose();
         } else {
             this.getFormError();

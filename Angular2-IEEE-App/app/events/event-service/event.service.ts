@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
@@ -15,13 +15,14 @@ export class EventService {
 
     private _eventUrl = url + 'api/Events';
     private _inscriptionUrl = url + 'api/InscriptionIntended';
+    private _dataUrl = './app/data/data.json';
 
     constructor(private _http: Http, private _errorMsgHandle: ErrorMsgHandleService) { }
 
     getEvents(): Observable<IEvent[]> {
-        return this._http.get(this._eventUrl)
+        return this._http.get(this._dataUrl)
             .map(this.extractData)
-            .do(data => console.log("ALL" + JSON.stringify(data)))
+            //.do(data => console.log("ALL" + JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
 
@@ -29,16 +30,25 @@ export class EventService {
     getEventsPagination(pageIndex: number): Observable<IEventResponse> {       
         return this._http.get(`${this._eventUrl}?request.currentPage=${pageIndex}`)
             .map(data => data.json())
-            .do(data => console.log("ALL" + JSON.stringify(data)))
+            .do(data => console.log(JSON.stringify(data)))
             .catch(error => this.handleError(error));
     }
 
 
 
-    getEvent(id): Observable<IEvent> {
-        return this._http.get(this._eventUrl + "/" + id)
-            .map(data => data.json())
-            .do(data => console.log("Event" + JSON.stringify(data)))
+    // getEvent(id): Observable<IEvent> {
+    //     return this._http.get(this._eventUrl + "/" + id)
+    //         .map(data => data.json())
+    //         .do(data => console.log("Event" + JSON.stringify(data)))
+    //         .catch(error => this.handleError(error));
+    // }
+
+
+      //just for showing 
+     getEvent(id): Observable<IEvent> {
+        return this._http.get(this._dataUrl)
+            .map(data =>data.json().items.filter(data=>data.id==id)[0])
+            //.do(data => console.log(data))
             .catch(error => this.handleError(error));
     }
 
@@ -56,7 +66,7 @@ export class EventService {
     }
 
     private extractData(res: Response) {        
-        let body = res.json();
+        let body = res.json();       
         return body.items || {};
     }
 

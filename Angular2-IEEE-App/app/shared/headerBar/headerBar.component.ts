@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Router  } from '@angular/router';
 
 @Component({
+  moduleId:module.id,
   selector: 'headerBar',
-  templateUrl: "app/shared/headerBar/headerBar.component.html",
+  templateUrl: "headerBar.component.html",
   host: {'(document:click)': 'handleClick($event)'}
 })
 export class HeaderBarComponent {

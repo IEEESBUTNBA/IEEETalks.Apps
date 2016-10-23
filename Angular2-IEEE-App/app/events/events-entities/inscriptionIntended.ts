@@ -1,4 +1,4 @@
-﻿export interface IInscriptionIntended {
+export interface IInscriptionIntended {
     firstName: string;
     lastName: string;
     email: string;
