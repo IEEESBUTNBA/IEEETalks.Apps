@@ -66,6 +66,8 @@
 
 .clear{
     clear: both;
+    display: block;
+
 }
 
 @include screen-mredia($medium_breackpoint){

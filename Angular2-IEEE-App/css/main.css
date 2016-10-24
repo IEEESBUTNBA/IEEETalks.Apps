@@ -425,6 +425,14 @@ textarea:focus, input:focus {
   margin-top: 450px;
   margin-left: 50%; }
 
+footer {
+  height: 100px;
+  clear: both; }
+  footer .footer {
+    padding-top: 50px;
+    text-align: center;
+    font-size: 0.7rem; }
+
 /* buttons */
 .button.success {
   font-weight: 300;
@@ -970,7 +978,8 @@ textarea:focus, input:focus {
       float: right; }
 
 .clear {
-  clear: both; }
+  clear: both;
+  display: block; }
 
 @media screen and (max-width: 812px) {
   .detail-wraper {
@@ -982,6 +991,46 @@ textarea:focus, input:focus {
     float: left;
     width: 95% !important; } }
 
-.about-wraper h1 {
-  margin-top: 1rem;
-  text-align: center; }
+.about-wraper {
+  width: 60%;
+  clear: both;
+  display: block; }
+  .about-wraper .about {
+    width: 100%;
+    min-width: 535px;
+    float: left;
+    margin: 15px;
+    border: 10px solid #1977c0;
+    border-radius: 20px; }
+    .about-wraper .about .avatar {
+      float: left;
+      width: 40%; }
+    .about-wraper .about img {
+      border-radius: 10px 0 0 10px; }
+    .about-wraper .about .text {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      margin: 10px 0 0 10px;
+      float: left; }
+      .about-wraper .about .text .contributor-name {
+        text-transform: uppercase; }
+      .about-wraper .about .text a {
+        text-decoration: none;
+        color: #007412; }
+        .about-wraper .about .text a:hover {
+          color: #c5641f;
+          cursor: pointer; }
+  .about-wraper h1 {
+    margin-top: 1rem;
+    text-align: center; }
+
+@media screen and (max-width: 685px) {
+  .about {
+    min-width: 330px !important; }
+    .about .avatar {
+      width: 100% !important;
+      margin: 0 auto !important;
+      float: auto !important;
+      clear: both  !important; }
+      .about .avatar img {
+        border-radius: 10px 10px 0 0; } }

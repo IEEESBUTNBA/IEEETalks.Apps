@@ -78,3 +78,13 @@ textarea:focus, input:focus{
    margin-top: 450px; 
    margin-left: 50%;
 }
+
+footer{
+    height: 100px;
+    clear: both;
+    .footer{
+        padding-top: 50px;        
+        text-align: center;
+        font-size: 0.7rem;
+    }
+}
