@@ -7,7 +7,7 @@ import{EventDetailComponent} from '../event-detail/event-detail.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-    { path: '', redirectTo: '/events', pathMatch: 'full' },
+    { path: '', redirectTo: 'events', pathMatch: 'full' },     
     { path: 'events', component: EventsListComponet },
     { path: 'event/:id', component: EventDetailComponent }
     ])

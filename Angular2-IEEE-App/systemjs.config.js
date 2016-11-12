@@ -13,7 +13,9 @@
     'angular2-infinite-scroll': 'node_modules/angular2-infinite-scroll',
     "angular2-masonry": "node_modules/angular2-masonry",
     "masonry-layout": "node_modules/masonry-layout/dist/masonry.pkgd.js",
-    "ng2-inline-svg":"node_modules/ng2-inline-svg/lib/"
+    "ng2-inline-svg":"node_modules/ng2-inline-svg/lib/",
+    'angular2-jwt':"node_modules/angular2-jwt/angular2-jwt.js",
+    'oidc-client':'./node_modules/oidc-client/lib/oidc-client.js'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -22,7 +24,9 @@
     'rxjs':                       { defaultExtension: 'js' },    
     'angular2-infinite-scroll': {main: 'angular2-infinite-scroll',defaultExtension: 'js' },
     "angular2-masonry": { defaultExtension: "js", main: "index" }  ,
-     "ng2-inline-svg":  { defaultExtension: "js", main: "index" } 
+    "ng2-inline-svg":  { defaultExtension: "js", main: "index" },
+    "angular2-jwt":  { defaultExtension: "js" },
+    'oidc-client':  { defaultExtension: "js" }
             
         
   };

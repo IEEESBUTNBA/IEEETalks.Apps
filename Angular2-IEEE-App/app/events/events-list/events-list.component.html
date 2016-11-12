@@ -8,10 +8,16 @@
             <h3>Advancing Technology for Humanity</h3>
         </div>
         <div class="ieee-welcome">
-            <h1>Welcome</h1>
+            <h1>Welcome</h1>          
         </div>
     </div>
 </div>
+  <button (click)="onAuth()">Auth</button>
+  <button (click)=" onCallPrivate()">Call Private</button> 
+  <button (click)=" isTokenExpired()">isTokenExpired</button> 
+  <button (click)="clear()">Clear</button> 
+    <button *ngIf='isLogIn' (click)="logOut()">LogOut</button>   
+   
 <div class="gallery">
     <!--<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">-->
         <masonry class="masonry_item" [options]="masonryOptions">

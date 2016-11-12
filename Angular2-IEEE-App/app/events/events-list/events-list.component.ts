@@ -1,12 +1,14 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit,OnChanges} from "@angular/core";
 import { ActivatedRoute, Router} from "@angular/router";
 import { MasonryOptions } from 'angular2-masonry';
 
 import {IEvent } from "../events-entities/event";
 import {IEventResponse} from "../events-entities/eventResponse";
 import {EventService} from "../event-service/event.service";
+import {AuthService} from "../../shared/auth/auth.service";
 
 
+declare var Auth0Lock: any;
 
 @Component({
     moduleId:module.id,
@@ -15,20 +17,49 @@ import {EventService} from "../event-service/event.service";
 
 
 
-export class EventsListComponet implements OnInit {
+export class EventsListComponet implements OnInit ,OnChanges{
     validate: boolean = true;
     hasMore: boolean = true;
     paginationCount: number = 0;
     pageTitle: string = "Events List";
     eventList: IEvent[] = new Array<IEvent>();
-    errorMessage: string;    
-    constructor(private _eventService: EventService,private _router:Router) {
-
+    errorMessage: string;   
+    isLogIn:boolean;
+    constructor(private _eventService: EventService,private _router:Router, private _authService:AuthService) {
+         
     }
 
-    ngOnInit(): void {
-        this.getEvents();
+    ngOnInit(): void {        
+        this.getEvents(); 
+         this._authService.isLogIn()
+        .subscribe(d=>this.isLogIn=d);   
+         }
+
+     ngOnChanges(){
+         
+     }    
+
+    onAuth(){         
+        this._authService.Authorize();
+             
     }
+    logOut(){         
+        this._authService.logOut();  
+       
+    }
+
+    isTokenExpired(){
+        this._authService.getToken();
+    }
+
+    clear(){
+         this._authService.clear();
+    }
+    
+     onCallPrivate(){
+         this._eventService.test()
+         .subscribe(data=>console.log(data));
+     }
 
     onSelect(event: IEvent): void {      
         this._router.navigate(['/event',event.id]);

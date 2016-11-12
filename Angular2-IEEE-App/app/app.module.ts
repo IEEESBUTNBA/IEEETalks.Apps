@@ -1,6 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AUTH_PROVIDERS,JwtHelper } from 'angular2-jwt';
+
 import { AppRoutingModule }     from './app-routing.module';
 import { AppComponent }  from './app.component';
 
@@ -18,6 +20,6 @@ import {HeaderBarComponent} from './shared/headerBar/headerBar.component';
                   AboutUsModule],
   declarations: [ AppComponent,HeaderBarComponent],
   bootstrap:    [ AppComponent ],
-  providers:[]
+  providers:[AUTH_PROVIDERS,JwtHelper ]
 })
 export class AppModule { }

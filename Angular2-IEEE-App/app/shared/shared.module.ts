@@ -7,6 +7,7 @@ import {InfiniteScrollModule} from 'angular2-infinite-scroll';
 import { InlineSVGModule } from 'ng2-inline-svg';
 
 import {ErrorMsgHandleService} from "./errorMsgHandle.service";
+import {AuthService} from './auth/auth.service';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import {ErrorMsgHandleService} from "./errorMsgHandle.service";
                  InfiniteScrollModule,
                  InlineSVGModule],               
   declarations: [ ],
-  providers:[ErrorMsgHandleService] 
+  providers:[ErrorMsgHandleService,AuthService] 
 })
 export class SharedModule { }
