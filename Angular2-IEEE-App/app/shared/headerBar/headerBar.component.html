@@ -1,0 +1,34 @@
+ 
+<nav>
+    <div class="nav-container ">
+        <div class="nav-logo">
+        </div>
+        <div class="nav-search">
+            <!--<input type="text" value="" placeholder="Events">
+            <label class="search-label" for="">
+                <div [inlineSVG]="'../../../svg/shape-search.svg'" ></div>
+            </label>-->
+        </div>
+        <div class="nav-user">
+            <h5></h5>
+                <span class="menuButton">  
+                       <div [inlineSVG]="'../../../svg/shape-menu.svg'"></div>            
+                </span>
+            <div class="icon-img">
+                <img src="../../../img/user-close-up.jpg" alt="" class="thumbnail-image small">
+            </div>
+        </div>
+    </div>
+    <div class="menu-wraper">
+        <div [class]='menu'>
+            <div class="menu-items">
+                <a class="menu-events"  (click)='goEventsList()' >
+                    <h4 >Events</h4>
+                </a>
+                <a class="menu-events"  routerLink="/aboutUs" >
+                    <h4 >About Us</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

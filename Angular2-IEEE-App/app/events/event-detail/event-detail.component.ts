@@ -1,15 +1,13 @@
-﻿import { Component, OnInit} from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router  } from '@angular/router';
 
 import {EventService} from "../event-service/event.service";
-import {IEvent} from "../event";
-import { EventSubscribeComponent} from "../event-subscribe/event.subscribe.component";
+import {IEvent} from "../events-entities/event";
 
 
 @Component({
-    templateUrl: "app/events/event-detail/event-detail.component.html",
-    directives: [EventSubscribeComponent]  
-
+    moduleId:module.id,
+    templateUrl: "event-detail.component.html"    
 })
 
 export class EventDetailComponent implements OnInit {
@@ -17,8 +15,8 @@ export class EventDetailComponent implements OnInit {
     pageTitle: string;    
     event: IEvent;
     id: string;
-    private _routeParam: any;
-   
+    private _routeParam: any; 
+    isOpen:boolean=false;
 
 
     constructor(private _route: ActivatedRoute,
@@ -33,7 +31,8 @@ export class EventDetailComponent implements OnInit {
             .subscribe(params => {
                 this.id = params['id'];              
             });
-        this.getEvent(this.id);         
+        this.getEvent(this.id); 
+        
     }
 
     getEvent(id: string) {
@@ -44,5 +43,13 @@ export class EventDetailComponent implements OnInit {
 
     onBack(): void {       
      this._router.navigate(['/events']);        
+    }
+
+    openModal():void{
+       this.isOpen = true;      
+    }
+
+    closeModal():void{        
+       this.isOpen=false;
     }
 }

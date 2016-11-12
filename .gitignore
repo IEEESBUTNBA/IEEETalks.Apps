@@ -2,9 +2,17 @@
 
 node_modules/
 .vscode/
-.ide/
+.idea/
 **/app/*.js
 **/app/**/*.js
 *.js.map
 *.log
+/dist
+dist/
+dist/node_modules
+<<<<<<< HEAD
+/.idea
+/Angular2-IEEE-App/.idea
+=======
 .idea
+>>>>>>> dev

@@ -1,71 +1,110 @@
-import {Component, OnInit} from "@angular/core";
-import { ActivatedRoute, ROUTER_DIRECTIVES, Router} from "@angular/router";
-import {url} from "../../shared/urlConstant";
-import {IEvent, IEventResponse} from "../event";
-import {EventService} from "../event-service/event.service";
-import { InfiniteScroll } from 'angular2-infinite-scroll';
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import {Component, OnInit,OnChanges} from "@angular/core";
+import { ActivatedRoute, Router} from "@angular/router";
+import { MasonryOptions } from 'angular2-masonry';
 
+import {IEvent } from "../events-entities/event";
+import {IEventResponse} from "../events-entities/eventResponse";
+import {EventService} from "../event-service/event.service";
+import {AuthService} from "../../shared/auth/auth.service";
+
+
+declare var Auth0Lock: any;
 
 @Component({
-    templateUrl: "app/events/events-list/events-list.component.html",
-    directives: [ROUTER_DIRECTIVES, InfiniteScroll]
+    moduleId:module.id,
+    templateUrl: "events-list.component.html",       
 })
 
 
 
-export class EventsListComponet implements OnInit {
+export class EventsListComponet implements OnInit ,OnChanges{
     validate: boolean = true;
     hasMore: boolean = true;
-    paginationCount = 0;
+    paginationCount: number = 0;
     pageTitle: string = "Events List";
     eventList: IEvent[] = new Array<IEvent>();
-    errorMessage: string;
-    constructor(private _http: Http, private _eventService: EventService, private route: ActivatedRoute, private _router: Router) {
-
+    errorMessage: string;   
+    isLogIn:boolean;
+    constructor(private _eventService: EventService,private _router:Router, private _authService:AuthService) {
+         
     }
 
-    ngOnInit(): void {
-        this.getEvents();
+    ngOnInit(): void {        
+        this.getEvents(); 
+         this._authService.isLogIn()
+        .subscribe(d=>this.isLogIn=d);   
+         }
+
+     ngOnChanges(){
+         
+     }    
+
+    onAuth(){         
+        this._authService.Authorize();
+             
+    }
+    logOut(){         
+        this._authService.logOut();  
+       
     }
 
-    onSelect(event: IEvent): void {
-        this._router.navigate(['/event', event.id]);
+    isTokenExpired(){
+        this._authService.getToken();
+    }
 
+    clear(){
+         this._authService.clear();
     }
-    private handleError(error: Response) {
-        // this._errorMsgHandle.getErrorMsg(error);                   
-        return Observable.throw(error || "server error");
+    
+     onCallPrivate(){
+         this._eventService.test()
+         .subscribe(data=>console.log(data));
+     }
 
-    }
-    onScroll() {
-        if (this.validate) {
-            this.getEvents();
-        }
-    }
+    onSelect(event: IEvent): void {      
+        this._router.navigate(['/event',event.id]);
+
+    }    
+    // onScroll() {
+    //     if (this.validate) {
+    //         this.getEvents();
+    //     }
+    // }
     validatePagination(): void {
         this.validate = true;
         this.getEvents();
     }
 
 
-    private getEvents(): void {
-        this._eventService.getEventsPagination(this.paginationCount)
-            .subscribe(response => {
-                this.hasMore = response.hasMore;
-                if (response.items != null) {
+    // private getEvents(): void {           
+    //     this._eventService.getEventsPagination(this.paginationCount)
+    //         .subscribe(response => { 
+    //             this.hasMore = response.hasMore;
+    //             if (response.items != null) {
                     
-                    response.items.forEach(element => {
-                        this.eventList.push(element);
-                    });
-                    ++this.paginationCount;
-                    if (this.hasMore && this.paginationCount % 3 == 0) {
-                        this.validate = false;
-                    }
-                }
-            },
-            error => error);
+    //                 response.items.forEach(element => {
+    //                     this.eventList.push(element);
+    //                 });
+    //                 ++this.paginationCount;
+    //                 if (this.hasMore && this.paginationCount % 3 == 0) {
+    //                     this.validate = false;
+    //                 }
+    //             }
+    //         },
+    //         error => error);
+    // }
+
+    private getEvents(): void { 
+        this._eventService.getEvents()
+        .subscribe(events=>this.eventList=events,
+         error => error);   
+    }
+
+    masonryOptions:MasonryOptions ={
+        gutter:10,
+        transitionDuration:'0.3s',
+        percentPosition:false,
+        fitWidth: true        
     }
 
 }

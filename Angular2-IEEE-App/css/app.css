@@ -1,4 +1,4 @@
-﻿﻿.app-margin{
+.app-margin{
     margin:0.5em;
     
 }
@@ -98,3 +98,7 @@ footer{
      color:#000000;
     padding:0 200px ;
     }   
+
+ .masonry_item { 
+margin: 0 auto;
+}

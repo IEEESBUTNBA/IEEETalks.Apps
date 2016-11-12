@@ -1,32 +1,32 @@
-﻿import { Component, Input} from "@angular/core";
-import {FormControl, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES} from "@angular/forms";
-
-import {IinscriptionIntended, InscriptionIntended} from "../../shared/inscriptionIntended";
-import {EventService} from "../event-service/event.service";
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from "@angular/core";
+import { FormControl, FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { IInscriptionIntended, InscriptionIntended } from "../events-entities/inscriptionIntended";
+import { EventService } from "../event-service/event.service";
 
 
 
 @Component({
-    templateUrl: "app/events/event-subscribe/event-subscribe.component.html",
-    selector: "app-eventsub",
-    providers: [],
-    directives: [REACTIVE_FORM_DIRECTIVES]
+    moduleId:module.id,
+    templateUrl: "event-subscribe.component.html",
+    selector: "app-eventsub"    
 })
 
-export class EventSubscribeComponent  {
+export class EventSubscribeComponent implements OnInit, OnChanges {
 
 
     @Input() eventId: string;
-    inscriptionIntended: IinscriptionIntended = new InscriptionIntended("", "", "", "");
-    active = true;
-    modal: string;
-    
+    @Input() isOpen: boolean;
+    @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    inscriptionIntended: IInscriptionIntended = new InscriptionIntended("", "", "", "");
 
     name: FormControl;
     lastName: FormControl;
     email: FormControl;
     subcriptionForm: FormGroup;
+
+    classModal: string;
+    modalContent: string;
 
 
     constructor(private _eventService: EventService, public builder: FormBuilder) {
@@ -40,21 +40,66 @@ export class EventSubscribeComponent  {
             lastName: this.lastName,
             email: this.email
         });
+
+
+    }
+    ngOnInit(): void {
+        this.classModal = 'modal modal-close';
+        this.modalContent = 'modal-content';
     }
 
-    onSubscribe() {        
+    ngOnChanges(): void {
+        if (this.isOpen === true) {
+            this.modalOpen();
+        }
+    }
+
+    modalOpen(): void {       
+        this.classModal = "modal modal-open";
+        setTimeout(() => {
+            this.modalContent = 'modal-content modal-effects';
+        }, 100);
+
+    }
+
+
+    modalClose(): void {      
+        this.modalContent = 'modal-content';
+        setTimeout(() => {
+            this.classModal = "modal modal-close";
+        }, 450);
+        this.closeModal.emit();
+    }
+
+    clickOutsideModal(e): void {  
+        console.log(e.target.id);     
+        if (e.target.id === 'modal') {
+            this.modalClose();
+        }
+    }
+
+    // onSubscribe() {
+    //     if (this.subcriptionForm.status == "VALID") {
+    //         this.inscriptionIntended.eventId = this.eventId;
+    //         this._eventService.inscriptionToEvent(this.inscriptionIntended)
+    //             .subscribe(status => this.getSuccesrMsg(status),
+    //             error => error);
+    //         this.modalClose();
+    //     } else {
+    //         this.getFormError();
+    //     }
+    // }
+
+    //just for showing returns valid Allways!!!!!!
+    onSubscribe() {
         if (this.subcriptionForm.status == "VALID") {
-            this.inscriptionIntended.eventId = this.eventId;
-            this._eventService.inscriptionToEvent(this.inscriptionIntended)
-                .subscribe(status => this.getSuccesrMsg(status),
-                error => error);
-            this.modal = "modal";     //<------------------close modal        
+            this.getSuccesrMsg(200);
+            this.modalClose();
         } else {
-            this.modal = "";
             this.getFormError();
         }
     }
-   
+
     getFormError() {
         toastr.remove();
         if (this.name.hasError("required")) {
@@ -69,22 +114,14 @@ export class EventSubscribeComponent  {
         if (this.email.hasError("pattern")) {
             toastr.warning("Email is not valid");
         }
-        
+
     }
 
     getSuccesrMsg(status) {
         if (status == 200) {
-            toastr.success("You've signed up for the event");           
-            this.resetForm();
+            toastr.success("You've signed up for the event");
+            this.subcriptionForm.reset();
         }
     }
 
-
-    resetForm() {
-        this.inscriptionIntended.firstName = "";
-        this.inscriptionIntended.email = "";
-        this.inscriptionIntended.lastName = "";
-        this.active = false;
-        setTimeout(() => this.active = true, 0);
-    }
 }
