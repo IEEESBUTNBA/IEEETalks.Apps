@@ -1,0 +1,30 @@
+<div class="container" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll($event)">
+  <div class="card" *ngFor="let event of eventList">
+    <md-card class="bcard">
+      <md-card-header>
+        <md-card-title>{{event.name}}</md-card-title>
+        <md-card-subtitle>{{event.eventDate | date:'fullDate'}}</md-card-subtitle>
+      </md-card-header>
+      <img class="image" [src]="event.image">
+      <md-card-content>
+        <p>
+          {{event.description | slice:0:140}}...
+        </p>
+      </md-card-content>
+      <md-card-title-group>
+        <md-card-title> {{event.price | currency: 'USD':true:'1.2-2'}}</md-card-title>
+        <md-card-subtitle> {{event.location}}</md-card-subtitle>
+      </md-card-title-group>
+      <md-card-actions align="end">
+        <button md-button>LIKE</button>
+        <button md-button (click)="onSelect(event)">
+           <md-icon class='icon' >pageview</md-icon>
+        </button>
+      </md-card-actions>
+      <!--<md-card-footer></md-card-footer>-->
+    </md-card>
+  </div>
+</div>
+<div class='spinner-container' *ngIf="isLoading$ | async">
+  <md-spinner class="spinner"></md-spinner>
+</div>
