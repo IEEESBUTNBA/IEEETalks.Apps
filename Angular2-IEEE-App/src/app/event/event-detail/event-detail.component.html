@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="card" *ngIf='event'>
+    <div class="button-wraper">
+      <button class="button back" md-button (click)="onBack()"><md-icon class='icon' >keyboard_arrow_left</md-icon>Back</button>
+      <span class="spacer"></span>
+      <button class="button suscribe" md-button (click)="onSubscribe(event.id)"><md-icon class='icon' >bookmark_border</md-icon>Subscribe</button>
+    </div>
+    <md-card class="bcard" >
+      <md-card-header>
+        <md-card-title>
+          {{event.name}}
+        </md-card-title>
+        <md-card-subtitle>{{event.eventDate | date:'fullDate'}}</md-card-subtitle>
+      </md-card-header>
+      <img class="image" [src]="event.image">
+      <md-card-content class='content'>
+        <p>
+          {{event.description}}
+        </p>
+      </md-card-content>
+    </md-card>
+  </div>
+
+</div>

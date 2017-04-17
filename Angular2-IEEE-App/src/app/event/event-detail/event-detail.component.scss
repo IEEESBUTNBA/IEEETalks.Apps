@@ -1,0 +1,60 @@
+$bg-color: #e5d0bf;
+$back-color: #3d5afe * 2;
+$subscribe-color:#c2743a;
+
+.container {
+  // box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  margin: .1rem;
+  padding:  1rem 0;
+
+  .card {
+    margin:  auto;
+    max-width: 600px;
+   }
+
+  .button-wraper {
+    display: flex;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+}
+
+  .image {
+    height: auto;
+    width: 100%;
+   }
+
+  .bcard {
+    background-color: $bg-color ;
+    background-size: cover;
+   }
+
+  .button {
+    margin: 1rem 0;
+
+    &.suscribe {
+
+      background-color: $subscribe-color;
+    }
+
+    &.back {
+      background-color: $back-color;
+  }
+   }
+
+  .content {
+    padding-top: 1rem;
+   }
+
+}
+
+.dialog-button {
+  margin: 1rem;
+}
+
+@media  ( max-width: 600px) {
+  .container {
+    padding: 0;
+   }
+}
